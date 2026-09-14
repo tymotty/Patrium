@@ -1,6 +1,6 @@
 // Pega os elementos que vamos manipular
 const modal = document.getElementById('modal-lancamento');
-const btnAbrirModal = document.getElementById('nav-lancamentos'); // o botão da sidebar
+const btnAbrirModal = document.getElementById('nav-lancamentos');
 const btnsFechar = document.querySelectorAll('.btn-fechar-modal');
 const etapa1 = document.querySelector('[data-etapa="1"]');
 const etapa2 = document.querySelector('[data-etapa="2"]');
@@ -19,7 +19,7 @@ btnsFechar.forEach(botao => {
     });
 });
 
-// Ao clicar numa categoria (Investimento, Despesas...), vai pra etapa 2
+// Ao clicar numa categoria, vai pra etapa 2
 opcoesLancamento.forEach(botao => {
     botao.addEventListener('click', () => {
         etapa1.style.display = 'none';
