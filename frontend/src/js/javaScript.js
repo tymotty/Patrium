@@ -65,7 +65,21 @@ const categorias = {
         ]
     }
 };
-
+//Botao Voltar
+document.getElementById('btn-voltar-etapa2').addEventListener('click', () => {
+    mostrarEtapa('etapa1');
+});
+//Volta ou fecha o modal se clicar fora dele
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('aberto');
+    }
+});
+//reseta o modal
+function fecharModal() {
+    modal.classList.remove('aberto');
+    mostrarEtapa('etapa1');
+}
 function abrirEtapa2(chaveCategoria) {
     const categoria = categorias[chaveCategoria]; // pega os dados daquela categoria
 
@@ -82,7 +96,7 @@ function abrirEtapa2(chaveCategoria) {
         const botao = document.createElement('button');
         botao.className = 'item-lista';
         botao.dataset.nome = item.nome; // guarda o nome
-
+        botao.style.setProperty('--cor-item', item.cor); // cor houver
         botao.innerHTML = `
             <span class="legenda-cor" style="background-color: ${item.cor}"></span>
             <span>${item.nome}</span>

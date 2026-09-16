@@ -663,7 +663,7 @@ progress::-webkit-progress-bar {
 .modal-conteudo{
     background-color: var(--color-gray);
     width: 450px;
-    height: 320px;
+    min-height: 320px;
     border-radius: 13px;
     border: solid 1px var(--border-widget);
     padding: 30px;
@@ -761,4 +761,91 @@ progress::-webkit-progress-bar {
 }
 #icon-lazer{
     color: var(--color-purple);
+}
+
+/*------------------------------------MODAL 2------------------------------------*/
+
+#etapa2{
+    margin: 10px;
+}
+/* Botão voltar (dentro do header da etapa 2) */
+.btn-voltar {
+    background: none;
+    border: none;
+    color: var(--color-slate);
+    font-size: var(--font-sm);
+    cursor: pointer;
+    padding: 0;
+}
+
+/* título e subtítulo da etapa 2 reaproveitam o padrão que você já tem */
+#etapa2-titulo {
+    color: var(--text-white);
+    font-size: var(--font-lg);
+    margin: 8px 0 2px;
+}
+
+#etapa2-subtitulo {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+    margin-bottom: 20px;
+}
+
+/* Lista de itens */
+.lista-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-lista {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--color-blue-gray);
+    border: solid 1px var(--border-widget);
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 100%;
+    cursor: pointer;
+    color: var(--text-white);
+    font-size: var(--font-xs);
+    transition: border-color 0.15s ease;
+}
+
+.item-lista:hover {
+    border-color: var(--cor-item);
+}
+/* nome do item preenche o espaço entre a bolinha e a seta */
+.item-lista span:nth-child(2) {
+    flex: 1;
+    text-align: left;
+}
+
+.legenda-cor {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.seta {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Botão "Adicionar Novo" — visual tracejado, distinto da lista */
+.item-adicionar {
+    border: 1.5px dashed var(--border-widget);
+    background: transparent;
+    color: var(--color-green);
+    justify-content: center;
+    font-weight: 500;
+}
+
+.item-adicionar:hover {
+    border-color: var(--color-green);
+}
+.nome-item-categoria{
+    font-size: var(--font-base)
 }
