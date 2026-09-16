@@ -27,12 +27,6 @@ opcoesLancamento.forEach(botao => {
     });
 });
 
-// Botão "voltar" da etapa 2 retorna pra etapa 1
-btnVoltar.addEventListener('click', () => {
-    etapa2.style.display = 'none';
-    etapa1.style.display = 'block';
-});
-
 // Categorias da etapa 2
 const categorias = {
     despesas: {
@@ -114,10 +108,19 @@ function mostrarEtapa(idEtapaMostrar) {
 }
 
 // Conecta os cliques da etapa 1 com a função de abrir etapa 2
+//Despesas
 document.getElementById('btn-lancamento-despesas').addEventListener('click', () => {
     abrirEtapa2('despesas');
 });
-
+//Investimento
 document.getElementById('btn-lancamento-investimento').addEventListener('click', () => {
     abrirEtapa2('investimento');
+});
+//Emergencia
+document.getElementById('btn-lancamento-emergencia').addEventListener('click', () => {
+    abrirEtapa2('emergencia');
+});
+//Lazer
+document.getElementById('btn-lancamento-lazer').addEventListener('click', () => {
+    abrirEtapa2('lazer');
 });
