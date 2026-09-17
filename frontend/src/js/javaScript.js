@@ -31,6 +31,7 @@ opcoesLancamento.forEach(botao => {
 const categorias = {
     despesas: {
         titulo: 'Despesas',
+        cor: '#F43F5E', 
         itens: [
             { nome: 'Aluguel', cor: '#F43F5E' },
             { nome: 'Água e luz', cor: '#3B82F6' },
@@ -40,6 +41,7 @@ const categorias = {
     },
     investimento: {
         titulo: 'Investimento',
+        cor: '#00E593', 
         itens: [
             { nome: 'Ações BR', cor: '#00E593' },
             { nome: 'FIIs', cor: '#3B82F6' },
@@ -50,6 +52,7 @@ const categorias = {
     },
     emergencia: {
         titulo: 'Emergencia',
+        cor: '#FFB800',
         itens: [
             { nome: 'CDB Liquidez', cor: '#00E593' },
             { nome: 'Tesouro Selic', cor: '#FFB800' }
@@ -57,6 +60,7 @@ const categorias = {
     },
     lazer: {
         titulo: 'Lazer',
+        cor: '#A78BFA', 
         itens: [
             { nome: 'Restaurantes', cor: '#F43F5E' },
             { nome: 'Streaming', cor: '#A78BFA' },
@@ -65,6 +69,10 @@ const categorias = {
         ]
     }
 };
+//Cores Etapa 3
+
+
+
 //Botao Voltar
 document.getElementById('btn-voltar-etapa2').addEventListener('click', () => {
     mostrarEtapa('etapa1');
@@ -104,10 +112,8 @@ function abrirEtapa2(chaveCategoria) {
         `;
 
         botao.addEventListener('click', () => {
-            document.getElementById('input-descricao').value = item.nome;
-            avancarParaEtapa3();
+            avancarParaEtapa3(item, categoria);
         });
-
         listaContainer.appendChild(botao); // adiciona o botão na tela
     });
 
@@ -137,4 +143,39 @@ document.getElementById('btn-lancamento-emergencia').addEventListener('click', (
 //Lazer
 document.getElementById('btn-lancamento-lazer').addEventListener('click', () => {
     abrirEtapa2('lazer');
+});
+
+//Etapa 3
+function avancarParaEtapa3(item, categoria) {
+    document.getElementById('etapa3-titulo').textContent = item.nome;
+    document.getElementById('input-descricao').value = item.nome;
+
+    const tagCategoria = document.getElementById('etapa3-tag-categoria');
+    tagCategoria.textContent = categoria.titulo;
+    tagCategoria.style.setProperty('--cor-tag', categoria.cor);
+
+    const tagItem = document.getElementById('etapa3-tag-item');
+    tagItem.textContent = item.nome;
+    tagItem.style.setProperty('--cor-tag', item.cor);
+
+    document.getElementById('input-descricao').style.setProperty('--cor-item', item.cor);
+
+    mostrarEtapa('etapa3');
+}
+
+document.getElementById('input-valor').addEventListener('input', (e) => {
+    const btn = document.getElementById('btn-confirmar-lancamento');
+    const valor = e.target.value.replace(/[^\d]/g, '');
+
+    if (valor && Number(valor) > 0) {
+        btn.classList.add('ativo');
+        btn.disabled = false;
+    } else {
+        btn.classList.remove('ativo');
+        btn.disabled = true;
+    }
+});
+//Volta etapa 2
+document.getElementById('btn-voltar-etapa3').addEventListener('click', () => {
+    mostrarEtapa('etapa2');
 });

@@ -773,13 +773,13 @@ progress::-webkit-progress-bar {
     background: none;
     border: none;
     color: var(--color-slate);
-    font-size: var(--font-sm);
+    font-size: var(--font-xs);
     cursor: pointer;
     padding: 0;
 }
 
 /* título e subtítulo da etapa 2 reaproveitam o padrão que você já tem */
-#etapa2-titulo {
+#etapa2-titulo, #etapa3-titulo {
     color: var(--text-white);
     font-size: var(--font-lg);
     margin: 8px 0 2px;
@@ -792,6 +792,9 @@ progress::-webkit-progress-bar {
 }
 
 /* Lista de itens */
+
+
+
 .lista-opcoes {
     display: flex;
     flex-direction: column;
@@ -848,4 +851,104 @@ progress::-webkit-progress-bar {
 }
 .nome-item-categoria{
     font-size: var(--font-base)
+}
+
+/*---------------ETAPA 3-----------*/
+
+/* Tags (Investimento / Renda Fixa) */
+.etapa3-tags {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0 24px;
+}
+/*Titulo*/
+#etapa3-titulo{
+    font-size: var(--font-base);
+}
+/*tags: investimento - FIIs...*/
+.tag {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: var(--font-sm);
+    color: var(--cor-tag);
+    background-color: color-mix(in srgb, var(--cor-tag) 15%, transparent);
+}
+
+/* Campos do formulário */
+.campo-form {
+    margin-bottom: 18px;
+}
+
+.campo-form label {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+/*campo descricao*/
+.campo-form input[type="text"] {
+    width: 100%;
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--cor-item, var(--border-widget));
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--text-white);
+    font-size: var(--font-sm);
+}
+
+.campo-form input[type="text"]:focus {
+    outline: none;
+    border:  var(--cor-item, var(--border-widget));
+}
+
+/* Campo de valor com prefixo R$ */
+.input-valor-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 10px;
+    padding: 0px 16px;
+}
+/*R$ do lado do input*/
+.prefixo-moeda {
+    color: var(--text-muted);
+}
+
+.input-valor-wrapper input {
+    background: none;
+    border: none;
+    color: var(--text-white);
+    font-size: var(--font-xs);
+    width: 100%;
+}
+
+.input-valor-wrapper input:focus {
+    outline: none;
+}
+#input-valor{
+    border: none;
+}
+
+
+/* Botão confirmar — desabilitado até ter valor */
+.btn-confirmar-lancamento {
+    width: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--color-blue-gray);
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+    font-weight: 600;
+    cursor: not-allowed;
+}
+
+.btn-confirmar-lancamento.ativo {
+    background-color: var(--color-green);
+    color: var(--color-bg-dark);
+    cursor: pointer;
 }

@@ -1,1 +1,2 @@
 - [ ] style="background-color de legenda-color como fonte unica
+- [ ] etapa3-titulo ajeitar todos dos etapas para dentro do header

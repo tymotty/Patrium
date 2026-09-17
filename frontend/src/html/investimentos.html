@@ -423,6 +423,8 @@
 
 
     <!--Tirar depois-->
+
+
 <!--------------------------------------------------------------------------------->
 <!-----------------------------------Lancamento------------------------------------>
 <!--------------------------------------------------------------------------------->
@@ -460,18 +462,51 @@
     <div class="modal-conteudo" data-etapa="2" id="etapa2" style="display: none;">
         <header class="modal-header">
             <button class="btn-voltar" id="btn-voltar-etapa2">← voltar</button>
+            <h2 class="titule lancamento" id="etapa2-titulo">Escolha o Item</h2>
             <button class="btn-fechar-modal">✕</button>
         </header>
-        <h2 id="etapa2-titulo">Escolha o Item</h2>
         <p id="etapa2-subtitulo">Categoria · selecione o item</p>
+        <div class="lista-total">
+            <div class="lista-opcoes" id="lista-opcoes-etapa2">
+                <!-- os botões são gerados aqui via JS -->
+            </div>
 
-        <div class="lista-opcoes" id="lista-opcoes-etapa2">
-            <!-- os botões são gerados aqui via JS -->
+            <button class="item-lista item-adicionar" id="btn-adicionar-novo">
+                <span>+</span>
+                <span>Adicionar Novo</span>
+            </button>
+        </div>
+    </div>
+
+    <!--Etapa 3-->
+    <div class="modal-conteudo" data-etapa="3" id="etapa3" style="display: none;">
+        <header class="modal-header">
+            <button class="btn-voltar" id="btn-voltar-etapa3">← voltar</button>
+            <button class="btn-fechar-modal">✕</button>
+        </header>
+
+        <h2 id="etapa3-titulo">Nome do item</h2><!--Ta pra fora pra ficar em baixo-->
+
+        <div class="etapa3-tags">
+            <span class="tag" id="etapa3-tag-categoria"></span>
+            <span class="tag" id="etapa3-tag-item"></span>
         </div>
 
-        <button class="item-lista item-adicionar" id="btn-adicionar-novo">
-            <span>+</span>
-            <span>Adicionar Novo</span>
+        <div class="campo-form">
+            <label for="input-descricao">Descrição</label>
+            <input type="text" id="input-descricao" />
+        </div>
+
+        <div class="campo-form">
+            <label for="input-valor">Valor (R$) *</label>
+            <div class="input-valor-wrapper">
+                <span class="prefixo-moeda">R$</span>
+                <input type="text" id="input-valor" placeholder="0,00" inputmode="decimal" />
+            </div>
+        </div>
+
+        <button class="btn-confirmar-lancamento" id="btn-confirmar-lancamento" disabled>
+            Confirmar lançamento
         </button>
     </div>
 </div>
