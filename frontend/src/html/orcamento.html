@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="/frontend/src/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrium</title>
+</head>
+  
+<!--------------------------------------------------------------------------------->
+<!------------------------------------NAV------------------------------------------>
+<!--------------------------------------------------------------------------------->
+    <aside class="sidebar">
+        <div class="brand">
+            <a href="#visao-geral" class="brand" aria-label="Ir para a visão geral">
+                <h1 id="title">Patrium</h1>
+            </a>
+            <p id="subtitle">Gerenciamento de Patrimônio</p>
+        </div>
+
+        <!-----MENU----->
+        <nav aria-label="Menu de navegação">
+            <ul>
+                <li><a href="visao-geral.html" class="nav-item" id="nav-visao-geral">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Visão Geral</span>
+                </a></li>
+
+                <li><a href="investimentos.html" class="nav-item" id="nav-investimentos">
+                    <i data-lucide="trending-up"></i>
+                    <span>Investimentos</span>
+                </a></li>
+
+                <li><button class="nav-item" data-section="lancamentos" id="nav-lancamentos">
+                    <i data-lucide="plus-circle"></i>
+                    <span>Lançamentos</span>
+                </button></li>
+
+                <li><a href="orcamento.html" class="nav-item" id="nav-orcamento">
+                    <i data-lucide="dollar-sign"></i>
+                    <span>Orçamento</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="#metas" class="nav-item" id="nav-metas">
+                    <i data-lucide="target"></i>
+                    <span>Metas</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="#historico" class="nav-item" id="nav-historico">
+                    <i data-lucide="clock"></i>
+                    <span>Histórico</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="#personalizar" class="nav-item" id="nav-personalizar">
+                    <i data-lucide="edit"></i>
+                    <span>Personalizar</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="#configuracoes" class="nav-item" id="nav-configuracoes">
+                    <i data-lucide="cog"></i>
+                    <span>Configurações</span>
+                </a></li>
+
+                <li><a href="#conta" class="nav-item" id="nav-conta">
+                    <i data-lucide="user"></i>
+                    <span>Conta</span>
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
+
+
+    <!-- ORÇAMENTO -->
+<main class="dashboard">
+<section class="pagina-orcamento">
+
+    <!-- Cards de métrica -->
+    <div class="cards-metricas">
+        <div class="widget card">
+            <p class="card-title">TOTAL PLANEJADO</p>
+            <h3 class="card-value">R$ 7.100</h3>
+            <p class="metrica-sub">orçamento do mês</p>
+        </div>
+
+        <div class="widget card">
+            <p class="card-title">TOTAL GASTO</p>
+            <h3 class="card-value">R$ 7.250</h3>
+            <p class="metrica-sub metrica-negativa">▼ 102% do orçamento</p>
+        </div>
+
+        <div class="card-metrica">
+            <p class="metrica-label">SALDO</p>
+            <h3 class="card-value metrica-negativa">R$ -150</h3>
+            <p class="metrica-sub metrica-negativa">▼ acima do limite</p>
+        </div>
+
+        <div class="card-metrica">
+            <p class="metrica-label">CATEGORIAS</p>
+            <h3 class="card-value">3 de 8</h3>
+            <p class="metrica-sub metrica-negativa">▼ acima do orçamento</p>
+        </div>
+    </div>
+
+    <!-- Banner de alerta (só aparece se tiver categoria estourada) -->
+    <div class="banner-alerta" id="banner-alerta-orcamento">
+        <i data-lucide="triangle-alert" class="icon-alerta"></i>
+        <p>
+            <strong id="lista-categorias-estouradas">Alimentação, Lazer, Outros</strong>
+            estouraram o orçamento este mês.
+        </p>
+    </div>
+
+    <!-- Lista de categorias -->
+    <div class="painel-categorias">
+        <h3 class="titulo-secao">Categorias</h3>
+
+        <div class="lista-categorias-orcamento" id="lista-categorias-orcamento">
+            <!-- cada categoria é gerada via JS, modelo abaixo -->
+
+            <div class="categoria-orcamento" data-status="ok">
+                <div class="categoria-orcamento-header">
+                    <i data-lucide="house" class="icon-categoria" style="color: var(--color-blue);"></i>
+                    <span class="categoria-nome">Moradia</span>
+                </div>
+                <div class="categoria-orcamento-valores">
+                    <span class="valor-gasto">R$ 2.500</span>
+                    <span class="valor-separador">/</span>
+                    <span class="valor-planejado">R$ 2.800</span>
+                    <span class="valor-percentual">89%</span>
+                </div>
+                <div class="barra-progresso-container">
+                    <div class="barra-progresso" style="width: 89%; background-color: var(--color-blue);"></div>
+                </div>
+            </div>
+
+            <div class="categoria-orcamento" data-status="estourou">
+                <div class="categoria-orcamento-header">
+                    <i data-lucide="circle-dot" class="icon-categoria" style="color: var(--color-gold);"></i>
+                    <span class="categoria-nome">Alimentação</span>
+                    <span class="tag-estourou">ESTOUROU</span>
+                </div>
+                <div class="categoria-orcamento-valores">
+                    <span class="valor-gasto valor-negativo">R$ 1.380</span>
+                    <span class="valor-separador">/</span>
+                    <span class="valor-planejado">R$ 1.200</span>
+                    <span class="valor-percentual valor-negativo">115%</span>
+                </div>
+                <div class="barra-progresso-container">
+                    <div class="barra-progresso barra-estourou" style="width: 100%; background-color: var(--color-red);"></div>
+                </div>
+            </div>
+
+            <!-- repete o mesmo padrão pra Transporte, Saúde, Lazer, Educação... -->
+
+        </div>
+    </div>
+
+</section>
+</main>
+
+
+<body>
+    <!---Script--->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>lucide.createIcons();</script>
+    <script src="/frontend/src/js/javaScript.js"></script>
+</body>
+</html>
