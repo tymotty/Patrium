@@ -22,9 +22,11 @@ body{
     --color-darker-green:#112C2D;
     --color-dark-green: #08A97E;        
     --color-green:      #00E593;
+    --color-darker-red2:#20141A;
     --color-darker-red: #2B1D28;
     --color-dark-red:   #BB3F58;
     --color-red:        #F43F5E;
+    --color-bright-red: #FF4D6A;
     --color-darker-blue:#232A3A; 
     --color-blue-gray:  #1A1F2E;
     --color-dark-blue:  #3E6CC1;
@@ -144,7 +146,6 @@ button {
     padding: 40px;
     width: 100%;
     margin-left: 237px; /* Ajusta a margem esquerda do dashboard para compensar a largura da sidebar */
-
 }
 
 
@@ -951,4 +952,45 @@ progress::-webkit-progress-bar {
     background-color: var(--color-green);
     color: var(--color-bg-dark);
     cursor: pointer;
+}
+
+
+/*---------------------------------------Orcamento--------------------------------*/
+
+/*Pai de todos*/
+#orcamento{
+    grid-template-columns: none;
+    
+}
+/*Pai dos cards*/
+.cards-metricas{
+    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    gap: 20px;
+}
+
+
+/*Baner aviso*/
+.banner-alerta{
+    display: flex;
+    background-color: var(--color-darker-red2);
+    border: solid 1px var(--color-dark-red);
+    border-radius: 12px;
+    padding: 13px;
+    color: var(--color-bright-red);
+    align-items: center;
+    gap: 15px;
+}
+/*Titulo do dashboard*/
+.titulo-secao{
+    color: var(--text-white);
+    font-size: var(--font-sm);
+}
+/*painel da categoria dos gastos*/
+.painel-categorias{
+    background-color: var(--widget-bg);
+    border: 1px solid var(--border-widget);
+    border-radius: 8px;
+    width: 100%;
+    padding: 20px;
 }

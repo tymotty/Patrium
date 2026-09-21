@@ -70,11 +70,11 @@
         </nav>
     </aside>
 
+<!--------------------------------------------------------------------------------->
+<!------------------------------------ORÇAMENTO------------------------------------>
+<!--------------------------------------------------------------------------------->
 
-    <!-- ORÇAMENTO -->
-<main class="dashboard">
-<section class="pagina-orcamento">
-
+<main class="dashboard" id="orcamento">
     <!-- Cards de métrica -->
     <div class="cards-metricas">
         <div class="widget card">
@@ -89,14 +89,14 @@
             <p class="metrica-sub metrica-negativa">▼ 102% do orçamento</p>
         </div>
 
-        <div class="card-metrica">
-            <p class="metrica-label">SALDO</p>
+        <div class="widget card">
+            <p class="card-title">SALDO</p>
             <h3 class="card-value metrica-negativa">R$ -150</h3>
             <p class="metrica-sub metrica-negativa">▼ acima do limite</p>
         </div>
 
-        <div class="card-metrica">
-            <p class="metrica-label">CATEGORIAS</p>
+        <div class="widget card">
+            <p class="card-title">CATEGORIAS</p>
             <h3 class="card-value">3 de 8</h3>
             <p class="metrica-sub metrica-negativa">▼ acima do orçamento</p>
         </div>
@@ -130,7 +130,8 @@
                     <span class="valor-percentual">89%</span>
                 </div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso" style="width: 89%; background-color: var(--color-blue);"></div>
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    </div>
                 </div>
             </div>
 
@@ -151,13 +152,118 @@
                 </div>
             </div>
 
+
+
+            
+            <div class="categoria-orcamento" data-status="ok">
+                <div class="categoria-orcamento-header">
+                    <i data-lucide="chart-pie" class="icon-categoria" style="color: var(--color-green);"></i>
+                    <span class="categoria-nome">Transporte</span>
+                </div>
+                <div class="categoria-orcamento-valores">
+                    <span class="valor-gasto">R$ 590</span>
+                    <span class="valor-separador">/</span>
+                    <span class="valor-planejado">R$ 600</span>
+                    <span class="valor-percentual">98%</span>
+                </div>
+                <div class="barra-progresso-container">
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="categoria-orcamento" data-status="ok">
+                <div class="categoria-orcamento-header">
+                    <i data-lucide="circle-dot" class="icon-categoria" style="color: var(--color-purple);"></i>
+                    <span class="categoria-nome">Saúde</span>
+                </div>
+                <div class="categoria-orcamento-valores">
+                    <span class="valor-gasto">R$ 480</span>
+                    <span class="valor-separador">/</span>
+                    <span class="valor-planejado">R$ 500</span>
+                    <span class="valor-percentual">96%</span>
+                </div>
+                <div class="barra-progresso-container">
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="categoria-orcamento" data-status="ok">
+                <div class="categoria-orcamento-header">
+                    <i data-lucide="contrast" class="icon-categoria" style="color: var(--color-red);"></i>
+                    <span class="categoria-nome">Lazer</span>
+                </div>
+                <div class="categoria-orcamento-valores">
+                    <span class="valor-gasto">R$ 1.050</span>
+                    <span class="valor-separador">/</span>
+                    <span class="valor-planejado">R$ 800</span>
+                    <span class="valor-percentual">131%</span>
+                </div>
+                <div class="barra-progresso-container">
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="categoria-orcamento" data-status="ok">
+                <div class="categoria-orcamento-header">
+                    <i data-lucide="columns-2" class="icon-categoria" style="color: var(--color-slate);"></i>
+                    <span class="categoria-nome">Educação</span>
+                </div>
+                <div class="categoria-orcamento-valores">
+                    <span class="valor-gasto">R$ 400</span>
+                    <span class="valor-separador">/</span>
+                    <span class="valor-planejado">R$ 400</span>
+                    <span class="valor-percentual">100%</span>
+                </div>
+                <div class="barra-progresso-container">
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="categoria-orcamento" data-status="ok">
+                <div class="categoria-orcamento-header">
+                    <i data-lucide="circle-dashed" class="icon-categoria" style="color: var(--color-green);"></i>
+                    <span class="categoria-nome">Vestuário</span>
+                </div>
+                <div class="categoria-orcamento-valores">
+                    <span class="valor-gasto">R$ 210</span>
+                    <span class="valor-separador">/</span>
+                    <span class="valor-planejado">R$ 300</span>
+                    <span class="valor-percentual">70%</span>
+                </div>
+                <div class="barra-progresso-container">
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="categoria-orcamento" data-status="ok">
+                <div class="categoria-orcamento-header">
+                    <i data-lucide="diamond" class="icon-categoria" style="color: var(--color-red);"></i>
+                    <span class="categoria-nome">Outros</span>
+                </div>
+                <div class="categoria-orcamento-valores">
+                    <span class="valor-gasto">R$ 640</span>
+                    <span class="valor-separador">/</span>
+                    <span class="valor-planejado">R$ 500</span>
+                    <span class="valor-percentual">128%</span>
+                </div>
+                <div class="barra-progresso-container">
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    </div>
+                </div>
+            </div>
+            
+
             <!-- repete o mesmo padrão pra Transporte, Saúde, Lazer, Educação... -->
 
         </div>
     </div>
-
-</section>
 </main>
+
 
 
 <body>
