@@ -179,3 +179,54 @@ document.getElementById('input-valor').addEventListener('input', (e) => {
 document.getElementById('btn-voltar-etapa3').addEventListener('click', () => {
     mostrarEtapa('etapa2');
 });
+
+
+
+
+
+
+
+
+
+// ------------------Orcamento------------------
+
+//barra de progresso 
+function criarCardCategoria(cat) {
+    const percentual = Math.round((cat.gasto / cat.planejado) * 100);
+    const estourou = percentual > 100;
+    const larguraBarra = Math.min(percentual, 100);
+
+    const card = document.createElement('div');
+    card.className = 'categoria-orcamento';
+    card.dataset.status = estourou ? 'estourou' : 'ok';
+
+    card.innerHTML = `
+        <div class="categoria-info">
+            <div class="categoria-orcamento-header">
+                <i data-lucide="${cat.icone}" class="icon-categoria" style="color: ${cat.cor};"></i>
+                <span class="categoria-nome">${cat.nome}</span>
+                ${estourou ? '<span class="tag-estourou">ESTOUROU</span>' : ''}
+            </div>
+            <div class="categoria-orcamento-valores">
+                <span class="valor-gasto ${estourou ? 'valor-negativo' : ''}">R$ ${cat.gasto.toLocaleString('pt-BR')}</span>
+                <span class="valor-separador">/</span>
+                <span class="valor-planejado">R$ ${cat.planejado.toLocaleString('pt-BR')}</span>
+                <span class="valor-percentual ${estourou ? 'valor-negativo' : ''}">${percentual}%</span>
+            </div>
+        </div>
+        <div class="barra-progresso-container" role="progressbar" aria-valuenow="${percentual}" aria-valuemin="0" aria-valuemax="100">
+            <div class="barra-progresso" style="width: ${larguraBarra}%; background-color: ${cat.cor};"></div>
+        </div>
+    `;
+
+    return card;
+}
+
+// Monta todas as categorias na tela
+const listaContainer = document.getElementById('lista-categorias-orcamento');
+categoriasOrcamento.forEach(cat => {
+    listaContainer.appendChild(criarCardCategoria(cat));
+});
+
+lucide.createIcons(); // renderiza os ícones inseridos via innerHTML
+

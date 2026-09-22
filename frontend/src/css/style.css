@@ -22,6 +22,7 @@ body{
     --color-darker-green:#112C2D;
     --color-dark-green: #08A97E;        
     --color-green:      #00E593;
+    --color-darker-red3:#301D29;
     --color-darker-red2:#20141A;
     --color-darker-red: #2B1D28;
     --color-dark-red:   #BB3F58;
@@ -981,6 +982,18 @@ progress::-webkit-progress-bar {
     align-items: center;
     gap: 15px;
 }
+/*pai categoria*/
+.lista-categorias-orcamento {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* ajusta até ficar do tamanho que quer */
+}
+/*categoria individual*/
+.categoria-orcamento {
+    display: flex;
+    flex-direction: column;  
+}
+
 /*Titulo do dashboard*/
 .titulo-secao{
     color: var(--text-white);
@@ -993,4 +1006,65 @@ progress::-webkit-progress-bar {
     border-radius: 8px;
     width: 100%;
     padding: 20px;
+}
+/*informacoes categoria*/
+.categoria-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+}
+/*header categoria*/
+.categoria-orcamento-header{
+    align-items: center;
+    display: flex;
+    gap: 12px;
+}
+/*categoria titulo*/
+.categoria-nome{
+    font-size: var(--font-sm);
+}
+
+/*icon categoria*/
+.icon-categoria{
+    width: 13px;
+}
+
+/*Pai Barra*/
+.barra-progresso-container {
+    width: 100%;
+    height: 6px;
+    background-color: var(--color-blue-gray); /* trilho de fundo */
+    border-radius: 999px; /* pílula, cantos bem arredondados */
+    overflow: hidden;
+    margin-top: 8px;
+}
+/*gasto atual*/
+.valor-gasto{
+    color: var(--text-white);
+}
+.valor-separador,.valor-planejado{
+    color: var(--color-gray-dark);
+}
+.valor-percentual{
+    color: var(--color-slate);
+}
+/*aviso estourou*/
+.tag-estourou{
+    background-color: var(--color-darker-red3);
+    color: var(--color-bright-red);
+    font-size: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+/*Barra de Progresso*/
+.barra-progresso {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.4s ease; /* anima quando o valor muda */
+}
+
+/*valor em negativo*/
+.valor-negativo {
+    color: var(--color-red);/*caso passe do orcamento o valor fica vermelho*/
+
 }

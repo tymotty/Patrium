@@ -119,15 +119,17 @@
             <!-- cada categoria é gerada via JS, modelo abaixo -->
 
             <div class="categoria-orcamento" data-status="ok">
-                <div class="categoria-orcamento-header">
-                    <i data-lucide="house" class="icon-categoria" style="color: var(--color-blue);"></i>
-                    <span class="categoria-nome">Moradia</span>
-                </div>
-                <div class="categoria-orcamento-valores">
-                    <span class="valor-gasto">R$ 2.500</span>
-                    <span class="valor-separador">/</span>
-                    <span class="valor-planejado">R$ 2.800</span>
-                    <span class="valor-percentual">89%</span>
+                <div class="categoria-info">
+                    <div class="categoria-orcamento-header">
+                        <i data-lucide="house" class="icon-categoria" style="color: var(--color-blue);"></i>
+                        <span class="categoria-nome">Moradia</span>
+                    </div>
+                    <div class="categoria-orcamento-valores">
+                        <span class="valor-gasto">R$ 2.500</span>
+                        <span class="valor-separador">/</span>
+                        <span class="valor-planejado">R$ 2.800</span>
+                        <span class="valor-percentual">89%</span>
+                    </div>
                 </div>
                 <div class="barra-progresso-container">
                     <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
@@ -136,17 +138,20 @@
             </div>
 
             <div class="categoria-orcamento" data-status="estourou">
-                <div class="categoria-orcamento-header">
-                    <i data-lucide="circle-dot" class="icon-categoria" style="color: var(--color-gold);"></i>
-                    <span class="categoria-nome">Alimentação</span>
-                    <span class="tag-estourou">ESTOUROU</span>
+                <div class="categoria-info">
+                    <div class="categoria-orcamento-header">
+                        <i data-lucide="circle-dot" class="icon-categoria" style="color: var(--color-gold);"></i>
+                        <span class="categoria-nome">Alimentação</span>
+                        <span class="tag-estourou">ESTOUROU</span>
+                    </div>
+                    <div class="categoria-orcamento-valores">
+                        <span class="valor-gasto valor-negativo">R$ 1.380</span>
+                        <span class="valor-separador">/</span>
+                        <span class="valor-planejado">R$ 1.200</span>
+                        <span class="valor-percentual valor-negativo">115%</span>
+                    </div>
                 </div>
-                <div class="categoria-orcamento-valores">
-                    <span class="valor-gasto valor-negativo">R$ 1.380</span>
-                    <span class="valor-separador">/</span>
-                    <span class="valor-planejado">R$ 1.200</span>
-                    <span class="valor-percentual valor-negativo">115%</span>
-                </div>
+                <div class="categoria-info"></div>
                 <div class="barra-progresso-container">
                     <div class="barra-progresso barra-estourou" style="width: 100%; background-color: var(--color-red);"></div>
                 </div>
@@ -156,15 +161,17 @@
 
             
             <div class="categoria-orcamento" data-status="ok">
-                <div class="categoria-orcamento-header">
-                    <i data-lucide="chart-pie" class="icon-categoria" style="color: var(--color-green);"></i>
-                    <span class="categoria-nome">Transporte</span>
-                </div>
-                <div class="categoria-orcamento-valores">
-                    <span class="valor-gasto">R$ 590</span>
-                    <span class="valor-separador">/</span>
-                    <span class="valor-planejado">R$ 600</span>
-                    <span class="valor-percentual">98%</span>
+                <div class="categoria-info">
+                    <div class="categoria-orcamento-header">
+                        <i data-lucide="chart-pie" class="icon-categoria" style="color: var(--color-green);"></i>
+                        <span class="categoria-nome">Transporte</span>
+                    </div>
+                    <div class="categoria-orcamento-valores">
+                        <span class="valor-gasto">R$ 590</span>
+                        <span class="valor-separador">/</span>
+                        <span class="valor-planejado">R$ 600</span>
+                        <span class="valor-percentual">98%</span>
+                    </div>
                 </div>
                 <div class="barra-progresso-container">
                     <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
@@ -173,15 +180,17 @@
             </div>
 
             <div class="categoria-orcamento" data-status="ok">
-                <div class="categoria-orcamento-header">
-                    <i data-lucide="circle-dot" class="icon-categoria" style="color: var(--color-purple);"></i>
-                    <span class="categoria-nome">Saúde</span>
-                </div>
-                <div class="categoria-orcamento-valores">
-                    <span class="valor-gasto">R$ 480</span>
-                    <span class="valor-separador">/</span>
-                    <span class="valor-planejado">R$ 500</span>
-                    <span class="valor-percentual">96%</span>
+                <div class="categoria-info">
+                    <div class="categoria-orcamento-header">
+                        <i data-lucide="circle-dot" class="icon-categoria" style="color: var(--color-purple);"></i>
+                        <span class="categoria-nome">Saúde</span>
+                    </div>
+                    <div class="categoria-orcamento-valores">
+                        <span class="valor-gasto">R$ 480</span>
+                        <span class="valor-separador">/</span>
+                        <span class="valor-planejado">R$ 500</span>
+                        <span class="valor-percentual">96%</span>
+                    </div>
                 </div>
                 <div class="barra-progresso-container">
                     <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
@@ -190,15 +199,37 @@
             </div>
 
             <div class="categoria-orcamento" data-status="ok">
-                <div class="categoria-orcamento-header">
-                    <i data-lucide="contrast" class="icon-categoria" style="color: var(--color-red);"></i>
-                    <span class="categoria-nome">Lazer</span>
+                <div class="categoria-info">
+                    <div class="categoria-orcamento-header">
+                        <i data-lucide="contrast" class="icon-categoria" style="color: var(--color-red);"></i>
+                        <span class="categoria-nome">Lazer</span>
+                        <span class="tag-estourou">ESTOUROU</span>
+                    </div>
+                    <div class="categoria-orcamento-valores">
+                        <span class="valor-gasto">R$ 1.050</span>
+                        <span class="valor-separador">/</span>
+                        <span class="valor-planejado">R$ 800</span>
+                        <span class="valor-percentual">131%</span>
+                    </div>
                 </div>
-                <div class="categoria-orcamento-valores">
-                    <span class="valor-gasto">R$ 1.050</span>
-                    <span class="valor-separador">/</span>
-                    <span class="valor-planejado">R$ 800</span>
-                    <span class="valor-percentual">131%</span>
+                <div class="barra-progresso-container">
+                    <div class="barra-progresso barra-estourou" style="width: 100%; background-color: var(--color-red);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="categoria-orcamento" data-status="ok">
+                <div class="categoria-info">
+                    <div class="categoria-orcamento-header">
+                        <i data-lucide="columns-2" class="icon-categoria" style="color: var(--color-slate);"></i>
+                        <span class="categoria-nome">Educação</span>
+                    </div>
+                    <div class="categoria-orcamento-valores">
+                        <span class="valor-gasto">R$ 400</span>
+                        <span class="valor-separador">/</span>
+                        <span class="valor-planejado">R$ 400</span>
+                        <span class="valor-percentual">100%</span>
+                    </div>
                 </div>
                 <div class="barra-progresso-container">
                     <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
@@ -207,32 +238,17 @@
             </div>
 
             <div class="categoria-orcamento" data-status="ok">
-                <div class="categoria-orcamento-header">
-                    <i data-lucide="columns-2" class="icon-categoria" style="color: var(--color-slate);"></i>
-                    <span class="categoria-nome">Educação</span>
-                </div>
-                <div class="categoria-orcamento-valores">
-                    <span class="valor-gasto">R$ 400</span>
-                    <span class="valor-separador">/</span>
-                    <span class="valor-planejado">R$ 400</span>
-                    <span class="valor-percentual">100%</span>
-                </div>
-                <div class="barra-progresso-container">
-                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                <div class="categoria-info">
+                    <div class="categoria-orcamento-header">
+                        <i data-lucide="circle-dashed" class="icon-categoria" style="color: var(--color-green);"></i>
+                        <span class="categoria-nome">Vestuário</span>
                     </div>
-                </div>
-            </div>
-
-            <div class="categoria-orcamento" data-status="ok">
-                <div class="categoria-orcamento-header">
-                    <i data-lucide="circle-dashed" class="icon-categoria" style="color: var(--color-green);"></i>
-                    <span class="categoria-nome">Vestuário</span>
-                </div>
-                <div class="categoria-orcamento-valores">
-                    <span class="valor-gasto">R$ 210</span>
-                    <span class="valor-separador">/</span>
-                    <span class="valor-planejado">R$ 300</span>
-                    <span class="valor-percentual">70%</span>
+                    <div class="categoria-orcamento-valores">
+                        <span class="valor-gasto">R$ 210</span>
+                        <span class="valor-separador">/</span>
+                        <span class="valor-planejado">R$ 300</span>
+                        <span class="valor-percentual">70%</span>
+                    </div>
                 </div>
                 <div class="barra-progresso-container">
                     <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
@@ -241,18 +257,21 @@
             </div>
             
             <div class="categoria-orcamento" data-status="ok">
-                <div class="categoria-orcamento-header">
-                    <i data-lucide="diamond" class="icon-categoria" style="color: var(--color-red);"></i>
-                    <span class="categoria-nome">Outros</span>
-                </div>
-                <div class="categoria-orcamento-valores">
-                    <span class="valor-gasto">R$ 640</span>
-                    <span class="valor-separador">/</span>
-                    <span class="valor-planejado">R$ 500</span>
-                    <span class="valor-percentual">128%</span>
+                <div class="categoria-info">
+                    <div class="categoria-orcamento-header">
+                        <i data-lucide="diamond" class="icon-categoria" style="color: var(--color-red);"></i>
+                        <span class="categoria-nome">Outros</span>
+                        <span class="tag-estourou">ESTOUROU</span>
+                    </div>
+                    <div class="categoria-orcamento-valores">
+                        <span class="valor-gasto">R$ 640</span>
+                        <span class="valor-separador">/</span>
+                        <span class="valor-planejado">R$ 500</span>
+                        <span class="valor-percentual">128%</span>
+                    </div>
                 </div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    <div class="barra-progresso barra-estourou" style="width: 100%; background-color: var(--color-red);">
                     </div>
                 </div>
             </div>
