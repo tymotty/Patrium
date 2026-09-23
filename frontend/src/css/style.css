@@ -969,8 +969,10 @@ progress::-webkit-progress-bar {
     display: flex;
     gap: 20px;
 }
-
-
+/*descricao do card*/
+.card-description.metrica-negativa{
+    color: var(--color-red);
+}
 /*Baner aviso*/
 .banner-alerta{
     display: flex;
@@ -1006,6 +1008,9 @@ progress::-webkit-progress-bar {
     border-radius: 8px;
     width: 100%;
     padding: 20px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
 }
 /*informacoes categoria*/
 .categoria-info {

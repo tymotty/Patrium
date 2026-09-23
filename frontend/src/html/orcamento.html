@@ -80,25 +80,25 @@
         <div class="widget card">
             <p class="card-title">TOTAL PLANEJADO</p>
             <h3 class="card-value">R$ 7.100</h3>
-            <p class="metrica-sub">orçamento do mês</p>
+            <p class="card-description">orçamento do mês</p>
         </div>
 
         <div class="widget card">
             <p class="card-title">TOTAL GASTO</p>
             <h3 class="card-value">R$ 7.250</h3>
-            <p class="metrica-sub metrica-negativa">▼ 102% do orçamento</p>
+            <p class="card-description metrica-negativa">▼ 102% do orçamento</p>
         </div>
 
         <div class="widget card">
             <p class="card-title">SALDO</p>
             <h3 class="card-value metrica-negativa">R$ -150</h3>
-            <p class="metrica-sub metrica-negativa">▼ acima do limite</p>
+            <p class="card-description metrica-negativa">▼ acima do limite</p>
         </div>
 
         <div class="widget card">
             <p class="card-title">CATEGORIAS</p>
             <h3 class="card-value">3 de 8</h3>
-            <p class="metrica-sub metrica-negativa">▼ acima do orçamento</p>
+            <p class="card-description metrica-negativa">▼ acima do orçamento</p>
         </div>
     </div>
 
@@ -198,7 +198,7 @@
                 </div>
             </div>
 
-            <div class="categoria-orcamento" data-status="ok">
+            <div class="categoria-orcamento" data-status="estourou">
                 <div class="categoria-info">
                     <div class="categoria-orcamento-header">
                         <i data-lucide="contrast" class="icon-categoria" style="color: var(--color-red);"></i>
@@ -206,10 +206,10 @@
                         <span class="tag-estourou">ESTOUROU</span>
                     </div>
                     <div class="categoria-orcamento-valores">
-                        <span class="valor-gasto">R$ 1.050</span>
+                        <span class="valor-gasto valor-negativo">R$ 1.050</span>
                         <span class="valor-separador">/</span>
                         <span class="valor-planejado">R$ 800</span>
-                        <span class="valor-percentual">131%</span>
+                        <span class="valor-percentual valor-negativo">131%</span>
                     </div>
                 </div>
                 <div class="barra-progresso-container">
@@ -256,7 +256,7 @@
                 </div>
             </div>
             
-            <div class="categoria-orcamento" data-status="ok">
+            <div class="categoria-orcamento" data-status="estourou">
                 <div class="categoria-info">
                     <div class="categoria-orcamento-header">
                         <i data-lucide="diamond" class="icon-categoria" style="color: var(--color-red);"></i>
@@ -264,14 +264,14 @@
                         <span class="tag-estourou">ESTOUROU</span>
                     </div>
                     <div class="categoria-orcamento-valores">
-                        <span class="valor-gasto">R$ 640</span>
+                        <span class="valor-gasto valor-negativo">R$ 640</span>
                         <span class="valor-separador">/</span>
                         <span class="valor-planejado">R$ 500</span>
-                        <span class="valor-percentual">128%</span>
+                        <span class="valor-percentual valor-negativo">128%</span>
                     </div>
                 </div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso barra-estourou" style="width: 100%; background-color: var(--color-red);">
+<div class="barra-progresso" style="width: 100%; background-color: var(--color-red);">
                     </div>
                 </div>
             </div>
