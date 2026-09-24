@@ -132,7 +132,7 @@
                     </div>
                 </div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    <div class="barra-progresso" style="width: 89%; background-color: var(--color-blue);">
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="categoria-info"></div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso barra-estourou" style="width: 100%; background-color: var(--color-red);"></div>
+                    <div class="barra-progresso barra-estourou" style="width: 115%; background-color: var(--color-red);"></div>
                 </div>
             </div>
 
@@ -174,7 +174,7 @@
                     </div>
                 </div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    <div class="barra-progresso" style="width: 98%; background-color: var(--color-green);">
                     </div>
                 </div>
             </div>
@@ -193,7 +193,7 @@
                     </div>
                 </div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-purple);">
                     </div>
                 </div>
             </div>
@@ -213,7 +213,7 @@
                     </div>
                 </div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso barra-estourou" style="width: 100%; background-color: var(--color-red);">
+                    <div class="barra-progresso barra-estourou" style="width: 131%; background-color: var(--color-red);">
                     </div>
                 </div>
             </div>
@@ -232,7 +232,7 @@
                     </div>
                 </div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-slate);">
                     </div>
                 </div>
             </div>
@@ -251,7 +251,7 @@
                     </div>
                 </div>
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-blue);">
+                    <div class="barra-progresso" style="width: 70%; background-color: var(--color-green);">
                     </div>
                 </div>
             </div>
@@ -259,7 +259,7 @@
             <div class="categoria-orcamento" data-status="estourou">
                 <div class="categoria-info">
                     <div class="categoria-orcamento-header">
-                        <i data-lucide="diamond" class="icon-categoria" style="color: var(--color-red);"></i>
+                        <i data-lucide="diamond" class="icon-categoria" style="color: var(--color-blue);"></i>
                         <span class="categoria-nome">Outros</span>
                         <span class="tag-estourou">ESTOUROU</span>
                     </div>
@@ -271,7 +271,7 @@
                     </div>
                 </div>
                 <div class="barra-progresso-container">
-<div class="barra-progresso" style="width: 100%; background-color: var(--color-red);">
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-red);">
                     </div>
                 </div>
             </div>
@@ -281,6 +281,92 @@
 
         </div>
     </div>
+
+    <!--------------------------------------------------------------------------------->
+<!-----------------------------------Lancamento------------------------------------>
+<!--------------------------------------------------------------------------------->
+<div class="modal-overlay" id="modal-lancamento">
+    <!-----ETAPA 1----->
+    <div class="modal-conteudo" id="etapa1" data-etapa="1">
+        <header class="modal-header">
+            <div>
+                <h2 class="titule lancamento">Novo Lançamento</h2>
+                <p class="subtitule lancamento">escolha o tipo de lançamento</p>
+            </div>
+            <button class="btn-fechar-modal" aria-label="Fechar">✕</button>
+        </header>
+
+        <div class="modal-opcoes">
+            <button class="opcao-lancamento"  id="btn-lancamento-investimento">
+                <i data-lucide="diamond" class="icon-lancamento" id="icon-investimento"></i>
+                <span>Investimento</span>
+            </button>
+            <button class="opcao-lancamento"  id="btn-lancamento-despesas">
+                <i data-lucide="target" class="icon-lancamento" id="icon-despesas"></i>
+                <span>Despesas</span>
+            </button>
+            <button class="opcao-lancamento" id="btn-lancamento-emergencia">
+                <i data-lucide="briefcase" class="icon-lancamento" id="icon-emergencia"></i>
+                <span>Emergência</span>
+            </button>
+            <button class="opcao-lancamento" id="btn-lancamento-lazer">
+                <i data-lucide="diamond" class="icon-lancamento" id="icon-lazer">  </i>
+                <span>Lazer</span>
+            </button>
+        </div>
+    </div>
+        <!-----ETAPA 2----->
+    <div class="modal-conteudo" data-etapa="2" id="etapa2" style="display: none;">
+        <header class="modal-header">
+            <button class="btn-voltar" id="btn-voltar-etapa2">← voltar</button>
+            <h2 class="titule lancamento" id="etapa2-titulo">Escolha o Item</h2>
+            <button class="btn-fechar-modal">✕</button>
+        </header>
+        <p id="etapa2-subtitulo">Categoria · selecione o item</p>
+        <div class="lista-total">
+            <div class="lista-opcoes" id="lista-opcoes-etapa2">
+                <!-- os botões são gerados aqui via JS -->
+            </div>
+
+            <button class="item-lista item-adicionar" id="btn-adicionar-novo">
+                <span>+</span>
+                <span>Adicionar Novo</span>
+            </button>
+        </div>
+    </div>
+
+    <!--Etapa 3-->
+    <div class="modal-conteudo" data-etapa="3" id="etapa3" style="display: none;">
+        <header class="modal-header">
+            <button class="btn-voltar" id="btn-voltar-etapa3">← voltar</button>
+            <button class="btn-fechar-modal">✕</button>
+        </header>
+
+        <h2 id="etapa3-titulo">Nome do item</h2><!--Ta pra fora pra ficar em baixo-->
+
+        <div class="etapa3-tags">
+            <span class="tag" id="etapa3-tag-categoria"></span>
+            <span class="tag" id="etapa3-tag-item"></span>
+        </div>
+
+        <div class="campo-form">
+            <label for="input-descricao">Descrição</label>
+            <input type="text" id="input-descricao" />
+        </div>
+
+        <div class="campo-form">
+            <label for="input-valor">Valor (R$) *</label>
+            <div class="input-valor-wrapper">
+                <span class="prefixo-moeda">R$</span>
+                <input type="text" id="input-valor" placeholder="0,00" inputmode="decimal" />
+            </div>
+        </div>
+
+        <button class="btn-confirmar-lancamento" id="btn-confirmar-lancamento" disabled>
+            Confirmar lançamento
+        </button>
+    </div>
+</div>
 </main>
 
 

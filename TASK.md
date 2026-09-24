@@ -1,2 +1,18 @@
+--Pages
+- [X] dashboard visao geral
+- [X] investimento
+- [X] lancamento modal 1,2,3 
+- [-] orcamento
+- [ ] Metas
+- [ ] Personalizar
+- [ ] Configuracao
+- [ ] Conta
+
+--Fix
 - [ ] style="background-color de legenda-color como fonte unica
 - [ ] etapa3-titulo ajeitar todos dos etapas para dentro do header
+- [ ] Add grafico em visao geral
+- [ ] Add grafico especifico de alcocao em visao geral
+- [ ] Add sistema de lancamento especifico para investimento 
+- [ ] Add historico para cada categoria orcamento
+- [ ] Icone da Pagina (logo) 

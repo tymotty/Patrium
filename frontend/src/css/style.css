@@ -58,15 +58,15 @@ body{
   
 
     /*---FONT SIZE---*/
-    --font-xs:   clamp(11px, 1.5vw, 13px);
-    --font-sm:   clamp(14px, 2vw,   16px);
+    --font-xs:   clamp(10px, 1vw,   13px);
+    --font-sm:   clamp(13px, 1vw,   16px);
     --font-base: clamp(14px, 2.5vw, 18px);
     --font-lg:   clamp(18px, 3.5vw, 22px);
     --font-xg:   clamp(22px, 3vw,   28px);
-    --font-xl:   clamp(26px, 4vw,   28px);
+    --font-xl:   clamp(24px, 2vw,   28px);
 
 }
-/*---------------------------------------NAV-------------------------------------- */
+/*-------------------------------------NAV--------------------------------------*/
 .sidebar {
     position: fixed;
     height: 100VH; /* Mantém a altura da sidebar em um viewport */ 
@@ -134,9 +134,9 @@ button {
 
 
 
-/*--------------------------------------------------------------------------------*/
-/*-------------------------------------DASHBOARD----------------------------------*/
-/*--------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
+/*-----------------------------------DASHBOARD----------------------------------*/
+/*------------------------------------------------------------------------------*/
 
 .dashboard {
     background-color: var(--main-dashboard-bg);
@@ -423,6 +423,7 @@ th:nth-child(5), td:nth-child(5) { /* Peso */
     .dashboard {
         grid-template-columns: repeat(2, 1fr); /*2 colunas: Permite cards em 1 e graficos/tabelas em 1-1-2*/
         margin-left:0;
+        margin-bottom: 60px;
     }
     .widget.card {
         grid-column: span 1;
@@ -444,9 +445,9 @@ th:nth-child(5), td:nth-child(5) { /* Peso */
 
 
 
-/*--------------------------------------------------------------------------------*/
-/*---------------------------------Investimentos----------------------------------*/
-/*--------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
+/*--------------------------------Investimentos---------------------------------*/
+/*------------------------------------------------------------------------------*/
 
 
 
@@ -956,7 +957,7 @@ progress::-webkit-progress-bar {
 }
 
 
-/*---------------------------------------Orcamento--------------------------------*/
+/*--------------------------------------Orcamento-------------------------------*/
 
 /*Pai de todos*/
 #orcamento{
@@ -970,6 +971,10 @@ progress::-webkit-progress-bar {
     gap: 20px;
 }
 /*descricao do card*/
+.card-description{
+    font-size: var(sm);
+}
+/*descricao negativa*/
 .card-description.metrica-negativa{
     color: var(--color-red);
 }
@@ -1073,3 +1078,28 @@ progress::-webkit-progress-bar {
     color: var(--color-red);/*caso passe do orcamento o valor fica vermelho*/
 
 }
+
+@media(max-width:850px){
+    .cards-metricas{
+        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+        gap: 20px;
+    }
+    .widget.card{
+        grid-column: span 1;
+    }
+}
+@media (max-width: 600px) {
+    .categoria-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .dashboard{
+        padding: 15px;
+    }
+    .cards-metricas{
+        gap: 10px;
+    }
+}
+    
