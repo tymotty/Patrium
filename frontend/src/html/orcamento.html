@@ -137,7 +137,7 @@
                 </div>
             </div>
 
-            <div class="categoria-orcamento" data-status="estourou">
+            <div class="categoria-orcamento" data-status="estourou" data-categoria="alimentacao">
                 <div class="categoria-info">
                     <div class="categoria-orcamento-header">
                         <i data-lucide="circle-dot" class="icon-categoria" style="color: var(--color-gold);"></i>
@@ -151,9 +151,21 @@
                         <span class="valor-percentual valor-negativo">115%</span>
                     </div>
                 </div>
-                <div class="categoria-info"></div>
+
+                <div class="categoria-detalhamento" id="detalhamento-alimentacao">
+                    <div class="detalhamento-header">
+                        <span class="detalhamento-titulo">DETALHAMENTO</span>
+                        <select class="detalhamento-filtro">
+                            <option value="data">Mais recentes</option>
+                            <option value="valor">Maior valor</option>
+                            <option value="subcategoria">Subcategoria</option>
+                        </select>
+                    </div>
+                    <div class="detalhamento-lista"></div>
+                </div>
+
                 <div class="barra-progresso-container">
-                    <div class="barra-progresso barra-estourou" style="width: 115%; background-color: var(--color-red);"></div>
+                    <div class="barra-progresso" style="width: 100%; background-color: var(--color-red);"></div>
                 </div>
             </div>
 

@@ -230,3 +230,73 @@ categoriasOrcamento.forEach(cat => {
 
 lucide.createIcons(); // renderiza os ícones inseridos via innerHTML
 
+///------------------------------------ORCAMENTO------------------------------
+const historicoLancamentos = {
+    alimentacao: [
+        { subcategoria: 'Lanche', icone: 'sandwich', item: 'Pizza', valor: 23.59, data: '2026-09-19' },
+        { subcategoria: 'Básico', icone: 'beef', item: 'Arroz, feijão', valor: 93.59, data: '2026-09-19' },
+        { subcategoria: 'Básico', icone: 'beef', item: 'Verduras', valor: 45.00, data: '2026-09-15' },
+        { subcategoria: 'Lanche', icone: 'sandwich', item: 'Hambúrguer', valor: 32.00, data: '2026-09-10' }
+    ],
+    moradia: [
+        { subcategoria: 'Aluguel', icone: 'house', item: 'Aluguel mensal', valor: 2200, data: '2026-09-05' },
+        { subcategoria: 'Contas', icone: 'zap', item: 'Água e luz', valor: 300, data: '2026-09-10' }
+    ]
+    // mais categoia
+};
+
+
+
+document.querySelectorAll('.categoria-orcamento').forEach(card => {
+    const chave = card.dataset.categoria;
+
+    card.querySelector('.categoria-orcamento-header').addEventListener('click', () => {
+        toggleDetalhamento(chave, card);
+    });
+
+    const filtro = card.querySelector('.detalhamento-filtro');
+    filtro.addEventListener('click', e => e.stopPropagation());
+    filtro.addEventListener('change', e => renderizarDetalhamento(chave, e.target.value));
+});
+
+function toggleDetalhamento(chave, card) {
+    const jaExpandido = card.classList.contains('expandido');
+
+    document.querySelectorAll('.categoria-orcamento.expandido').forEach(c => {
+        if (c !== card) c.classList.remove('expandido');
+    });
+
+    card.classList.toggle('expandido');
+
+    if (!jaExpandido) {
+        renderizarDetalhamento(chave, 'data');
+    }
+}
+
+function renderizarDetalhamento(chave, criterio) {
+    const container = document.querySelector(`#detalhamento-${chave} .detalhamento-lista`);
+    const itens = [...(historicoLancamentos[chave] || [])];
+
+    itens.sort((a, b) => {
+        if (criterio === 'valor') return b.valor - a.valor;
+        if (criterio === 'subcategoria') return a.subcategoria.localeCompare(b.subcategoria);
+        return new Date(b.data) - new Date(a.data);
+    });
+
+    container.innerHTML = itens.map(item => `
+        <div class="item-detalhamento">
+            <i data-lucide="${item.icone}" class="item-detalhamento-icon"></i>
+            <span class="item-detalhamento-sub">${item.subcategoria}</span>
+            <span class="item-detalhamento-nome">${item.item}</span>
+            <span class="item-detalhamento-valor">R$ ${item.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+            <span class="item-detalhamento-data">${formatarData(item.data)}</span>
+        </div>
+    `).join('');
+
+    lucide.createIcons();
+}
+
+function formatarData(dataIso) {
+    const [ano, mes, dia] = dataIso.split('-');
+    return `${dia}/${mes}`;
+}
