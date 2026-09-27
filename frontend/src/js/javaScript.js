@@ -1,3 +1,4 @@
+
 // Elementos
 const modal = document.getElementById('modal-lancamento');
 const btnAbrirModal = document.getElementById('nav-lancamentos');
@@ -257,6 +258,8 @@ document.querySelectorAll('.categoria-orcamento').forEach(card => {
     const filtro = card.querySelector('.detalhamento-filtro');
     filtro.addEventListener('click', e => e.stopPropagation());
     filtro.addEventListener('change', e => renderizarDetalhamento(chave, e.target.value));
+    document.querySelectorAll('.categoria-orcamento').length
+
 });
 
 function toggleDetalhamento(chave, card) {
