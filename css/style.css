@@ -388,8 +388,6 @@ th:nth-child(5), td:nth-child(5) { /* Peso */
         padding: 0;
         border-right: none;
         border-top: 1px solid var(--border-widget);
-        border-radius: 99px;
-        margin: 10px;
     }
 
     .sidebar nav {
@@ -425,8 +423,7 @@ th:nth-child(5), td:nth-child(5) { /* Peso */
     .dashboard {
         grid-template-columns: repeat(2, 1fr); /*2 colunas: Permite cards em 1 e graficos/tabelas em 1-1-2*/
         margin-left:0;
-        margin-bottom: 60px;
-        
+        margin-bottom: 60px;  
     }
     .widget.card {
         grid-column: span 1;
@@ -441,6 +438,7 @@ th:nth-child(5), td:nth-child(5) { /* Peso */
 
 
 @media (max-width: 570px) { /* 550: Oculta Tipo e Peso da tabela */
+    th:nth-child(2), td:nth-child(2), /* Tipo */
     th:nth-child(5), td:nth-child(5) { /* Peso */
         display: none;
     }

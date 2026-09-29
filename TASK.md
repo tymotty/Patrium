@@ -3,7 +3,7 @@
 - [X] investimento
 - [X] lancamento modal 1,2,3 
 - [-] orcamento
-- [ ] Metas
+- [-] Metas
 - [ ] Personalizar
 - [ ] Configuracao
 - [ ] Conta
