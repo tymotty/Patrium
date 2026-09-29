@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrium</title>
+</head>
+<body>
+  
+<!--------------------------------------------------------------------------------->
+<!------------------------------------NAV------------------------------------------>
+<!--------------------------------------------------------------------------------->
+    <aside class="sidebar">
+        <div class="brand">
+            <a href="index.html" class="brand" aria-label="Ir para a visão geral">
+                <h1 id="title">Patrium</h1>
+            </a>
+            <p id="subtitle">Gerenciamento de Patrimônio</p>
+        </div>
+
+        <!-----MENU----->
+        <nav aria-label="Menu de navegação">
+            <ul>
+                <li><a href="index.html" class="nav-item" id="nav-visao-geral">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Visão Geral</span>
+                </a></li>
+
+                <li><a href="investimentos.html" class="nav-item" id="nav-investimentos">
+                    <i data-lucide="trending-up"></i>
+                    <span>Investimentos</span>
+                </a></li>
+
+                <li><button class="nav-item" data-section="lancamentos" id="nav-lancamentos">
+                    <i data-lucide="plus-circle"></i>
+                    <span>Lançamentos</span>
+                </button></li>
+
+                <li><a href="orcamento.html" class="nav-item" id="nav-orcamento">
+                    <i data-lucide="dollar-sign"></i>
+                    <span>Orçamento</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="metas.html" class="nav-item" id="nav-metas">
+                    <i data-lucide="target"></i>
+                    <span>Metas</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="#historico" class="nav-item" id="nav-historico">
+                    <i data-lucide="clock"></i>
+                    <span>Histórico</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="#personalizar" class="nav-item" id="nav-personalizar">
+                    <i data-lucide="edit"></i>
+                    <span>Personalizar</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="#configuracoes" class="nav-item" id="nav-configuracoes">
+                    <i data-lucide="cog"></i>
+                    <span>Configurações</span>
+                </a></li>
+
+                <li><a href="#conta" class="nav-item" id="nav-conta">
+                    <i data-lucide="user"></i>
+                    <span>Conta</span>
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
+
+
+
+<!--------------------------------------------------------------------------------->
+<!--------------------------------------METAS-------------------------------------->
+<!--------------------------------------------------------------------------------->
+<main class="dashboard" id="metas">
+    <section class="cards-metas">
+        <article class="card-meta">
+            <div class="header-card-meta">
+                <i data-lucide="columns-2" class="icon-categoria" style="color: var(--color-gold);"></i>
+                <div class="header-meta-info">
+                    <div class="header-meta">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="barra-progresso-container">
+                <div class="barra-progresso" style="width: 100%; background-color: var(--color-red);"></div>
+            </div>
+                
+        </article>
+    </section>
+</main>
+
+
+
+
+
+
+
+<!--------------------------------------------------------------------------------->
+<!-----------------------------------Lancamento------------------------------------>
+<!--------------------------------------------------------------------------------->
+    <div class="modal-overlay" id="modal-lancamento">
+        <!-----ETAPA 1----->
+        <div class="modal-conteudo" id="etapa1" data-etapa="1">
+            <header class="modal-header">
+                <div>
+                    <h2 class="titule lancamento">Novo Lançamento</h2>
+                    <p class="subtitule lancamento">escolha o tipo de lançamento</p>
+                </div>
+                <button class="btn-fechar-modal" aria-label="Fechar">✕</button>
+            </header>
+
+            <div class="modal-opcoes">
+                <button class="opcao-lancamento"  id="btn-lancamento-investimento">
+                    <i data-lucide="diamond" class="icon-lancamento" id="icon-investimento"></i>
+                    <span>Investimento</span>
+                </button>
+                <button class="opcao-lancamento"  id="btn-lancamento-despesas">
+                    <i data-lucide="target" class="icon-lancamento" id="icon-despesas"></i>
+                    <span>Despesas</span>
+                </button>
+                <button class="opcao-lancamento" id="btn-lancamento-emergencia">
+                    <i data-lucide="briefcase" class="icon-lancamento" id="icon-emergencia"></i>
+                    <span>Emergência</span>
+                </button>
+                <button class="opcao-lancamento" id="btn-lancamento-lazer">
+                    <i data-lucide="diamond" class="icon-lancamento" id="icon-lazer">  </i>
+                    <span>Lazer</span>
+                </button>
+            </div>
+        </div>
+            <!-----ETAPA 2----->
+        <div class="modal-conteudo" data-etapa="2" id="etapa2" style="display: none;">
+            <header class="modal-header">
+                <button class="btn-voltar" id="btn-voltar-etapa2">← voltar</button>
+                <h2 class="titule lancamento" id="etapa2-titulo">Escolha o Item</h2>
+                <button class="btn-fechar-modal">✕</button>
+            </header>
+            <p id="etapa2-subtitulo">Categoria · selecione o item</p>
+            <div class="lista-total">
+                <div class="lista-opcoes" id="lista-opcoes-etapa2">
+                    <!-- os botões são gerados aqui via JS -->
+                </div>
+
+                <button class="item-lista item-adicionar" id="btn-adicionar-novo">
+                    <span>+</span>
+                    <span>Adicionar Novo</span>
+                </button>
+            </div>
+        </div>
+
+        <!--Etapa 3-->
+        <div class="modal-conteudo" data-etapa="3" id="etapa3" style="display: none;">
+            <header class="modal-header">
+                <button class="btn-voltar" id="btn-voltar-etapa3">← voltar</button>
+                <button class="btn-fechar-modal">✕</button>
+            </header>
+
+            <h2 id="etapa3-titulo">Nome do item</h2><!--Ta pra fora pra ficar em baixo-->
+
+            <div class="etapa3-tags">
+                <span class="tag" id="etapa3-tag-categoria"></span>
+                <span class="tag" id="etapa3-tag-item"></span>
+            </div>
+
+            <div class="campo-form">
+                <label for="input-descricao">Descrição</label>
+                <input type="text" id="input-descricao" />
+            </div>
+
+            <div class="campo-form">
+                <label for="input-valor">Valor (R$) *</label>
+                <div class="input-valor-wrapper">
+                    <span class="prefixo-moeda">R$</span>
+                    <input type="text" id="input-valor" placeholder="0,00" inputmode="decimal" />
+                </div>
+            </div>
+
+            <button class="btn-confirmar-lancamento" id="btn-confirmar-lancamento" disabled>
+                Confirmar lançamento
+            </button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>lucide.createIcons();</script>
+    <script src="js/javaScript.js"></script> 
+</body>
+</html>
