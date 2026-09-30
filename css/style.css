@@ -645,9 +645,9 @@ progress::-webkit-progress-bar {
 
 
 
-/*--------------------------------------------------------------------------------*/
-/*------------------------------------Lancamento----------------------------------*/
-/*--------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
+/*----------------------------------Lancamento----------------------------------*/
+/*------------------------------------------------------------------------------*/
 
 /*Pai de todos*/
 .modal-overlay {
@@ -767,7 +767,7 @@ progress::-webkit-progress-bar {
     color: var(--color-purple);
 }
 
-/*------------------------------------MODAL 2------------------------------------*/
+/*-----------------------------------MODAL 2------------------------------------*/
 
 #etapa2{
     margin: 10px;
@@ -1186,4 +1186,43 @@ progress::-webkit-progress-bar {
     font-size: var(--font-sm);
     width: 90px;
     text-align: right;
+}
+
+
+
+
+
+/*-----------------METAS-----------------*/
+/*pai de todos*/
+#metas{
+    grid-template-columns: none;
+}
+/*Pai cards*/
+.cards-metas{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+/*card*/
+.card-meta{
+    background-color: var(--widget-bg);
+    border: 1px solid var(--border-widget);
+    border-radius: 8px;
+    width: 100%;
+    padding: 20px;
+    
+}
+
+.header-card-meta{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.icon-categoria{
+    width: 18px;
+}
+
+.meta-rodape{
+    display: flex;
+    justify-content: space-around;
 }
