@@ -1189,7 +1189,12 @@ progress::-webkit-progress-bar {
     width: 90px;
     text-align: right;
 }
-
+.categoria-info {
+    cursor: pointer;
+}
+.banner-alerta {
+    display: none; /* o JS decide quando mostrar */
+}
 
 
 
@@ -1282,7 +1287,4 @@ progress::-webkit-progress-bar {
 .item-detalhamento:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.03);
     border-radius: 6px;
-}
-.categoria-info {
-    cursor: pointer;
 }

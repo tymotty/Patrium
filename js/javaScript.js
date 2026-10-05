@@ -236,33 +236,95 @@ function criarCardCategoria(cat) {
 
     return card;
 }
+
+
+
+function atualizarResumoOrcamento() {
+    const totalPlanejado = categoriasOrcamento.reduce((soma, cat) => soma + cat.planejado, 0);
+    const totalGasto = categoriasOrcamento.reduce((soma, cat) => soma + cat.gasto, 0);
+    const saldo = totalPlanejado - totalGasto;
+    const percentualTotal = Math.round((totalGasto / totalPlanejado) * 100);
+
+    const categoriasEstouradas = categoriasOrcamento.filter(cat => cat.gasto > cat.planejado);
+    const qtdEstouradas = categoriasEstouradas.length;
+    const qtdTotal = categoriasOrcamento.length;
+
+    const cards = document.querySelectorAll('.cards-metricas .widget.card');
+    // cards[0] = Total Planejado | cards[1] = Total Gasto | cards[2] = Saldo | cards[3] = Categorias
+
+    
+    // --- Card 1: Total Planejado ---
+    cards[0].querySelector('.card-value').textContent = `R$ ${totalPlanejado.toLocaleString('pt-BR')}`;
+
+    // --- Card 2: Total Gasto ---
+    cards[1].querySelector('.card-value').textContent = `R$ ${totalGasto.toLocaleString('pt-BR')}`;
+    const descGasto = cards[1].querySelector('.card-description');
+    descGasto.textContent = `${totalGasto > totalPlanejado ? '▼' : '▲'} ${percentualTotal}% do orçamento`;
+    descGasto.classList.toggle('metrica-negativa', totalGasto > totalPlanejado);
+
+    // --- Card 3: Saldo ---
+    const valorSaldo = cards[2].querySelector('.card-value');
+    valorSaldo.textContent = `R$ ${saldo.toLocaleString('pt-BR')}`;
+    valorSaldo.classList.toggle('metrica-negativa', saldo < 0);
+
+    const descSaldo = cards[2].querySelector('.card-description');
+    descSaldo.textContent = saldo < 0 ? '▼ acima do limite' : '▲ Dentro do limite';
+    descSaldo.classList.toggle('metrica-negativa', saldo < 0);
+
+    // --- Card 4: Categorias ---
+    cards[3].querySelector('.card-value').textContent = `${qtdEstouradas} de ${qtdTotal}`;
+    const descCategorias = cards[3].querySelector('.card-description');
+    descCategorias.textContent = qtdEstouradas > 0 ? '▼ Acima do orçamento' : '▲ Tudo sob controle';
+    descCategorias.classList.toggle('metrica-negativa', qtdEstouradas > 0);
+
+    // --- Banner de alerta ---
+    const banner = document.getElementById('banner-alerta-orcamento');
+    if (qtdEstouradas > 0) {
+        const nomes = categoriasEstouradas.map(cat => cat.nome).join(', ');
+        document.getElementById('lista-categorias-estouradas').textContent = nomes;
+        banner.style.display = 'flex';
+    } else {
+        banner.style.display = 'none';
+    }
+}
+
+
+
 // 1. Declarações de dados
+
+// Dados de categorias
 const categoriasOrcamento = [
-    { chave: 'moradia', nome: 'Moradia', icone: 'house', cor: 'var(--color-blue)', gasto: 2400, planejado: 2500 },
-    { chave: 'alimentacao', nome: 'Alimentação', icone: 'beef', cor: 'var(--color-gold)', gasto: 1180, planejado: 1200 },
-    { chave: 'transporte', nome: 'Transporte', icone: 'car', cor: 'var(--color-green)', gasto: 200, planejado: 300 },
-    { chave: 'saude', nome: 'Saúde', icone: 'heart-pulse', cor: 'var(--color-red)', gasto: 350, planejado: 400 },
-    { chave: 'lazer', nome: 'Lazer', icone: 'coffee', cor: 'var(--color-purple)', gasto: 150, planejado: 200 },
-    { chave: 'educacao', nome: 'Educação', icone: 'book-open', cor: 'var(--color-light-gray)', gasto: 500, planejado: 600 },
-    { chave: 'vestuario', nome: 'Vestuário', icone: 'shirt', cor: 'var(--color-green)', gasto: 100, planejado: 150 },
-    { chave: 'outros', nome: 'Outros', icone: 'gift', cor: 'var(--color-red)', gasto: 80, planejado: 100 }
+    { chave: 'moradia', nome: 'Moradia', icone: 'house', cor: 'var(--color-blue)',  planejado: 2500 },
+    { chave: 'alimentacao', nome: 'Alimentação', icone: 'utensils', cor: 'var(--color-gold)',  planejado: 1200 },
+    { chave: 'transporte', nome: 'Transporte', icone: 'car', cor: 'var(--color-green)',  planejado: 300 },
+    { chave: 'saude', nome: 'Saúde', icone: 'heart-pulse', cor: 'var(--color-red)',  planejado: 400 },
+    { chave: 'lazer', nome: 'Lazer', icone: 'coffee', cor: 'var(--color-purple)',  planejado: 200 },
+    { chave: 'educacao', nome: 'Educação', icone: 'book-open', cor: 'var(--color-light-gray)',  planejado: 600 },
+    { chave: 'vestuario', nome: 'Vestuário', icone: 'shirt', cor: 'var(--color-green)',  planejado: 150 },
+    { chave: 'outros', nome: 'Outros', icone: 'gift', cor: 'var(--color-red)',  planejado: 100 }
 ];
+
+//histórico de lançamentos
 const historicoLancamentos = {
     moradia: [
         { subcategoria: 'Aluguel', icone: 'house', item: 'Aluguel mensal', valor: 2200, data: '2026-09-05' },
         { subcategoria: 'Contas', icone: 'zap', item: 'Água e luz', valor: 300, data: '2026-09-10' }
     ],
     alimentacao: [
-        { subcategoria: 'Lanche', icone: 'sandwich', item: 'Pizza', valor: 23.59, data: '2026-09-19' },
-        { subcategoria: 'Básico', icone: 'beef', item: 'Arroz, feijão', valor: 93.59, data: '2026-09-19' },
-        { subcategoria: 'Básico', icone: 'beef', item: 'Verduras', valor: 45.00, data: '2026-09-15' },
-        { subcategoria: 'Lanche', icone: 'sandwich', item: 'Hambúrguer', valor: 32.00, data: '2026-09-10' }
+        { subcategoria: 'Lanche', icone: 'pizza', item: 'Pizza', valor: 23.59, data: '2026-09-19' },
+        { subcategoria: 'Básico', icone: 'ham', item: 'Arroz, feijão', valor: 93.59, data: '2026-09-19' },
+        { subcategoria: 'Básico', icone: 'ham', item: 'Verduras', valor: 45.00, data: '2026-09-15' },
+        { subcategoria: 'Lanche', icone: 'pizza', item: 'Hambúrguer', valor: 32.00, data: '2026-09-10' },
+        { subcategoria: 'Básico', icone: 'ham', item: 'Carnes', valor: 150.00, data: '2026-09-05' },
+        { subcategoria: 'Básico', icone: 'ham', item: 'Frutas', valor: 60.00, data: '2026-09-01' },
+        { subcategoria: 'Lanche', icone: 'pizza', item: 'Sorvete', valor: 20.00, data: '2026-09-02' },
+        { subcategoria: 'Básico', icone: 'ham', item: 'Leite e ovos', valor: 30.00, data: '2026-09-03' },
+        { subcategoria: 'Lanche', icone: 'pizza', item: 'Café da manhã', valor: 15.00, data: '2026-09-04' }
     ],
     transporte: [
         { subcategoria: 'Combustível', icone: 'fuel', item: 'Gasolina', valor: 150.00, data: '2026-09-12' },
         { subcategoria: 'Transporte público', icone: 'bus', item: 'Ônibus', valor: 50.00, data: '2026-09-14' },
-        { subcategoria: 'Manutenção', icone: 'wrench', item: 'Troca de óleo', valor: 100.00, data: '2026-09-18' },
-        { subcategoria: 'Uber', icone: 'car', item: 'Corrida', valor: 30.00, data: '2026-09-20' }
+        { subcategoria: 'Manutenção', icone: 'wrench', item: 'Troca de óleo', valor: 100.00, data: '2026-09-18' }
     ],
     saude: [
         { subcategoria: 'Plano de saúde', icone: 'heart-pulse', item: 'Mensalidade', valor: 300.00, data: '2026-09-01' },
@@ -275,21 +337,21 @@ const historicoLancamentos = {
         { subcategoria: 'Assinatura', icone: 'music', item: 'Spotify', valor: 20.00, data: '2026-09-10' }
     ],
     educacao: [
-        { subcategoria: 'Curso online', icone: 'book-open', item: 'Curso de JS', valor: 200.00, data: '2026-09-03' },
-        { subcategoria: 'Material escolar', icone: 'book', item: 'Caderno', valor: 30.00, data: '2026-09-07' },
+        { subcategoria: 'Curso online', icone: 'book-open', item: 'Curso de JS', valor: 50.00, data: '2026-09-03' },
         { subcategoria: 'mensalidade', icone: 'graduation-cap', item: 'Faculdade', valor: 500.00, data: '2026-09-10' }
     ],
     vestuario: [
-        { subcategoria: 'Roupa', icone: 't-shirt', item: 'Camiseta', valor: 50.00, data: '2026-09-11' },
-        { subcategoria: 'Calçado', icone: 'shoe', item: 'Tênis', valor: 120.00, data: '2026-09-15' }
+        { subcategoria: 'Calçado', icone: 'sport-shoe', item: 'Tênis', valor: 120.00, data: '2026-09-15' }
     ],
     outros: [
-        { subcategoria: 'Diversos', icone: 'gift', item: 'Presente', valor: 100.00, data: '2026-09-17' },
         { subcategoria: 'Assinatura', icone: 'credit-card', item: 'App X', valor: 20.00, data: '2026-09-19' }
     ]
     
 };
-
+function calcularGastoCategoria(chave) {
+    const itens = historicoLancamentos[chave] || [];
+    return itens.reduce((soma, item) => soma + item.valor, 0);
+}
 
 // 2. Montagem dos cards
 document.querySelectorAll('.categoria-orcamento').forEach(card => {
@@ -302,10 +364,12 @@ document.querySelectorAll('.categoria-orcamento').forEach(card => {
 // Monta todas as categorias na tela
 const listaContainer = document.getElementById('lista-categorias-orcamento');
 categoriasOrcamento.forEach(cat => {
+    cat.gasto = calcularGastoCategoria(cat.chave);
     listaContainer.appendChild(criarCardCategoria(cat));
 });
 
 lucide.createIcons(); // renderiza os ícones inseridos via innerHTML
+atualizarResumoOrcamento();
 
 
 // 3. Listeners (cards já existem no DOM aqui)
