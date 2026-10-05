@@ -191,7 +191,6 @@ document.getElementById('btn-voltar-etapa3').addEventListener('click', () => {
 
 // ------------------Orcamento------------------
 
-//barra de progresso 
 function criarCardCategoria(cat) {
     const percentual = Math.round((cat.gasto / cat.planejado) * 100);
     const estourou = percentual > 100;
@@ -200,6 +199,7 @@ function criarCardCategoria(cat) {
     const card = document.createElement('div');
     card.className = 'categoria-orcamento';
     card.dataset.status = estourou ? 'estourou' : 'ok';
+    card.dataset.categoria = cat.chave; 
 
     card.innerHTML = `
         <div class="categoria-info">
@@ -215,6 +215,19 @@ function criarCardCategoria(cat) {
                 <span class="valor-percentual ${estourou ? 'valor-negativo' : ''}">${percentual}%</span>
             </div>
         </div>
+
+        <div class="categoria-detalhamento" id="detalhamento-${cat.chave}">
+            <div class="detalhamento-header">
+                <span class="detalhamento-titulo">DETALHAMENTO</span>
+                <select class="detalhamento-filtro">
+                    <option value="data">Mais recentes</option>
+                    <option value="valor">Maior valor</option>
+                    <option value="subcategoria">Subcategoria</option>
+                </select>
+            </div>
+            <div class="detalhamento-lista"></div>
+        </div>
+
         <div class="barra-progresso-container" role="progressbar" aria-valuenow="${percentual}" aria-valuemin="0" aria-valuemax="100">
             <div class="barra-progresso" style="width: ${larguraBarra}%; background-color: ${cat.cor};"></div>
         </div>
@@ -222,16 +235,12 @@ function criarCardCategoria(cat) {
 
     return card;
 }
-
-// Monta todas as categorias na tela
-const listaContainer = document.getElementById('lista-categorias-orcamento');
-categoriasOrcamento.forEach(cat => {
-    listaContainer.appendChild(criarCardCategoria(cat));
-});
-
-lucide.createIcons(); // renderiza os ícones inseridos via innerHTML
-
-///------------------------------------ORCAMENTO------------------------------
+// 1. Declarações de dados
+const categoriasOrcamento = [
+    { chave: 'alimentacao', nome: 'Alimentação', icone: 'circle-dot', cor: 'var(--color-gold)', gasto: 1380, planejado: 1200 },
+    { chave: 'moradia', nome: 'Moradia', icone: 'house', cor: 'var(--color-blue)', gasto: 2400, planejado: 2500 },
+    // ... suas outras categorias aqui
+];
 const historicoLancamentos = {
     alimentacao: [
         { subcategoria: 'Lanche', icone: 'sandwich', item: 'Pizza', valor: 23.59, data: '2026-09-19' },
@@ -243,11 +252,28 @@ const historicoLancamentos = {
         { subcategoria: 'Aluguel', icone: 'house', item: 'Aluguel mensal', valor: 2200, data: '2026-09-05' },
         { subcategoria: 'Contas', icone: 'zap', item: 'Água e luz', valor: 300, data: '2026-09-10' }
     ]
-    // mais categoia
+    
 };
 
 
+// 2. Montagem dos cards
+document.querySelectorAll('.categoria-orcamento').forEach(card => {
+    console.log(
+        card.dataset.categoria,
+        '| header:', card.querySelector('.categoria-orcamento-header'),
+        '| filtro:', card.querySelector('.detalhamento-filtro')
+    );
+});
+// Monta todas as categorias na tela
+const listaContainer = document.getElementById('lista-categorias-orcamento');
+categoriasOrcamento.forEach(cat => {
+    listaContainer.appendChild(criarCardCategoria(cat));
+});
 
+lucide.createIcons(); // renderiza os ícones inseridos via innerHTML
+
+
+// 3. Listeners (cards já existem no DOM aqui)
 document.querySelectorAll('.categoria-orcamento').forEach(card => {
     const chave = card.dataset.categoria;
 
@@ -258,8 +284,6 @@ document.querySelectorAll('.categoria-orcamento').forEach(card => {
     const filtro = card.querySelector('.detalhamento-filtro');
     filtro.addEventListener('click', e => e.stopPropagation());
     filtro.addEventListener('change', e => renderizarDetalhamento(chave, e.target.value));
-    document.querySelectorAll('.categoria-orcamento').length
-
 });
 
 function toggleDetalhamento(chave, card) {
