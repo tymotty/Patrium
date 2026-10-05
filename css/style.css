@@ -15,8 +15,10 @@ body{
     --color-bg-dark:    #0B0D11;
     --color-black-light:#0D0F14;
     --color-hover-bg:   #0A1C1B;
-    --color-gray:       #131720;
+    --color-darker-gray:#171B23;
     --color-gray-dark:  #4A5568;
+    --color-gray:       #131720;
+    --color-light-gray: #788596;
     --color-slate:      #8896A8;
     --color-white:      #E8EDF5;
     --color-darker-green:#112C2D;
@@ -1275,4 +1277,12 @@ progress::-webkit-progress-bar {
 
 .meta-rodape-valor.valor-destaque {
     color: var(--color-gold);
+}
+
+.item-detalhamento:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+}
+.categoria-info {
+    cursor: pointer;
 }

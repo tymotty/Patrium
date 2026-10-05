@@ -16,3 +16,6 @@
 - [ ] Add sistema de lancamento especifico para investimento 
 - [ ] Add historico para cada categoria orcamento
 - [ ] Icone da Pagina (logo) 
+
+Lancamento:
+- [ ] atualizar o lancamento para poder colocar a categoria da despesa

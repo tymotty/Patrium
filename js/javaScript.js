@@ -195,6 +195,7 @@ function criarCardCategoria(cat) {
     const percentual = Math.round((cat.gasto / cat.planejado) * 100);
     const estourou = percentual > 100;
     const larguraBarra = Math.min(percentual, 100);
+    const corBarra = estourou ? 'var(--color-red)' : cat.cor;
 
     const card = document.createElement('div');
     card.className = 'categoria-orcamento';
@@ -215,6 +216,9 @@ function criarCardCategoria(cat) {
                 <span class="valor-percentual ${estourou ? 'valor-negativo' : ''}">${percentual}%</span>
             </div>
         </div>
+        <div class="barra-progresso-container" role="progressbar" aria-valuenow="${percentual}" aria-valuemin="0" aria-valuemax="100">
+            <div class="barra-progresso" style="width: ${larguraBarra}%; background-color: ${corBarra};"></div>
+        </div>
 
         <div class="categoria-detalhamento" id="detalhamento-${cat.chave}">
             <div class="detalhamento-header">
@@ -228,29 +232,60 @@ function criarCardCategoria(cat) {
             <div class="detalhamento-lista"></div>
         </div>
 
-        <div class="barra-progresso-container" role="progressbar" aria-valuenow="${percentual}" aria-valuemin="0" aria-valuemax="100">
-            <div class="barra-progresso" style="width: ${larguraBarra}%; background-color: ${cat.cor};"></div>
-        </div>
     `;
 
     return card;
 }
 // 1. Declarações de dados
 const categoriasOrcamento = [
-    { chave: 'alimentacao', nome: 'Alimentação', icone: 'circle-dot', cor: 'var(--color-gold)', gasto: 1380, planejado: 1200 },
     { chave: 'moradia', nome: 'Moradia', icone: 'house', cor: 'var(--color-blue)', gasto: 2400, planejado: 2500 },
-    // ... suas outras categorias aqui
+    { chave: 'alimentacao', nome: 'Alimentação', icone: 'beef', cor: 'var(--color-gold)', gasto: 1180, planejado: 1200 },
+    { chave: 'transporte', nome: 'Transporte', icone: 'car', cor: 'var(--color-green)', gasto: 200, planejado: 300 },
+    { chave: 'saude', nome: 'Saúde', icone: 'heart-pulse', cor: 'var(--color-red)', gasto: 350, planejado: 400 },
+    { chave: 'lazer', nome: 'Lazer', icone: 'coffee', cor: 'var(--color-purple)', gasto: 150, planejado: 200 },
+    { chave: 'educacao', nome: 'Educação', icone: 'book-open', cor: 'var(--color-light-gray)', gasto: 500, planejado: 600 },
+    { chave: 'vestuario', nome: 'Vestuário', icone: 'shirt', cor: 'var(--color-green)', gasto: 100, planejado: 150 },
+    { chave: 'outros', nome: 'Outros', icone: 'gift', cor: 'var(--color-red)', gasto: 80, planejado: 100 }
 ];
 const historicoLancamentos = {
+    moradia: [
+        { subcategoria: 'Aluguel', icone: 'house', item: 'Aluguel mensal', valor: 2200, data: '2026-09-05' },
+        { subcategoria: 'Contas', icone: 'zap', item: 'Água e luz', valor: 300, data: '2026-09-10' }
+    ],
     alimentacao: [
         { subcategoria: 'Lanche', icone: 'sandwich', item: 'Pizza', valor: 23.59, data: '2026-09-19' },
         { subcategoria: 'Básico', icone: 'beef', item: 'Arroz, feijão', valor: 93.59, data: '2026-09-19' },
         { subcategoria: 'Básico', icone: 'beef', item: 'Verduras', valor: 45.00, data: '2026-09-15' },
         { subcategoria: 'Lanche', icone: 'sandwich', item: 'Hambúrguer', valor: 32.00, data: '2026-09-10' }
     ],
-    moradia: [
-        { subcategoria: 'Aluguel', icone: 'house', item: 'Aluguel mensal', valor: 2200, data: '2026-09-05' },
-        { subcategoria: 'Contas', icone: 'zap', item: 'Água e luz', valor: 300, data: '2026-09-10' }
+    transporte: [
+        { subcategoria: 'Combustível', icone: 'fuel', item: 'Gasolina', valor: 150.00, data: '2026-09-12' },
+        { subcategoria: 'Transporte público', icone: 'bus', item: 'Ônibus', valor: 50.00, data: '2026-09-14' },
+        { subcategoria: 'Manutenção', icone: 'wrench', item: 'Troca de óleo', valor: 100.00, data: '2026-09-18' },
+        { subcategoria: 'Uber', icone: 'car', item: 'Corrida', valor: 30.00, data: '2026-09-20' }
+    ],
+    saude: [
+        { subcategoria: 'Plano de saúde', icone: 'heart-pulse', item: 'Mensalidade', valor: 300.00, data: '2026-09-01' },
+        { subcategoria: 'Medicamentos', icone: 'pill', item: 'Remédio A', valor: 50.00, data: '2026-09-05' }
+    ],
+    lazer: [
+        { subcategoria: 'Cinema', icone: 'film', item: 'Vingador Ultimato', valor: 30.00, data: '2026-09-20' },
+        { subcategoria: 'Restaurante', icone: 'coffee', item: 'Jantar', valor: 80.00, data: '2026-09-18' },
+        { subcategoria: 'Assinatura', icone: 'tv', item: 'Netflix', valor: 40.00, data: '2026-09-15' },
+        { subcategoria: 'Assinatura', icone: 'music', item: 'Spotify', valor: 20.00, data: '2026-09-10' }
+    ],
+    educacao: [
+        { subcategoria: 'Curso online', icone: 'book-open', item: 'Curso de JS', valor: 200.00, data: '2026-09-03' },
+        { subcategoria: 'Material escolar', icone: 'book', item: 'Caderno', valor: 30.00, data: '2026-09-07' },
+        { subcategoria: 'mensalidade', icone: 'graduation-cap', item: 'Faculdade', valor: 500.00, data: '2026-09-10' }
+    ],
+    vestuario: [
+        { subcategoria: 'Roupa', icone: 't-shirt', item: 'Camiseta', valor: 50.00, data: '2026-09-11' },
+        { subcategoria: 'Calçado', icone: 'shoe', item: 'Tênis', valor: 120.00, data: '2026-09-15' }
+    ],
+    outros: [
+        { subcategoria: 'Diversos', icone: 'gift', item: 'Presente', valor: 100.00, data: '2026-09-17' },
+        { subcategoria: 'Assinatura', icone: 'credit-card', item: 'App X', valor: 20.00, data: '2026-09-19' }
     ]
     
 };
@@ -276,17 +311,19 @@ lucide.createIcons(); // renderiza os ícones inseridos via innerHTML
 // 3. Listeners (cards já existem no DOM aqui)
 document.querySelectorAll('.categoria-orcamento').forEach(card => {
     const chave = card.dataset.categoria;
+    const dadosCategoria = categoriasOrcamento.find(c => c.chave === chave);
+    const corIcone = dadosCategoria ? dadosCategoria.cor : 'var(--text-white)';
 
-    card.querySelector('.categoria-orcamento-header').addEventListener('click', () => {
-        toggleDetalhamento(chave, card);
+    card.querySelector('.categoria-info').addEventListener('click', () => {
+        toggleDetalhamento(chave, card, corIcone);
     });
 
     const filtro = card.querySelector('.detalhamento-filtro');
     filtro.addEventListener('click', e => e.stopPropagation());
-    filtro.addEventListener('change', e => renderizarDetalhamento(chave, e.target.value));
+    filtro.addEventListener('change', e => renderizarDetalhamento(chave, e.target.value, corIcone));
 });
 
-function toggleDetalhamento(chave, card) {
+function toggleDetalhamento(chave, card, corIcone) {
     const jaExpandido = card.classList.contains('expandido');
 
     document.querySelectorAll('.categoria-orcamento.expandido').forEach(c => {
@@ -296,11 +333,11 @@ function toggleDetalhamento(chave, card) {
     card.classList.toggle('expandido');
 
     if (!jaExpandido) {
-        renderizarDetalhamento(chave, 'data');
+        renderizarDetalhamento(chave, 'data', corIcone);
     }
 }
 
-function renderizarDetalhamento(chave, criterio) {
+function renderizarDetalhamento(chave, criterio, corIcone) {
     const container = document.querySelector(`#detalhamento-${chave} .detalhamento-lista`);
     const itens = [...(historicoLancamentos[chave] || [])];
 
@@ -312,7 +349,7 @@ function renderizarDetalhamento(chave, criterio) {
 
     container.innerHTML = itens.map(item => `
         <div class="item-detalhamento">
-            <i data-lucide="${item.icone}" class="item-detalhamento-icon"></i>
+            <i data-lucide="${item.icone}" class="item-detalhamento-icon" style="color: ${corIcone};"></i>
             <span class="item-detalhamento-sub">${item.subcategoria}</span>
             <span class="item-detalhamento-nome">${item.item}</span>
             <span class="item-detalhamento-valor">R$ ${item.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
