@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box; 
 }
+html,body{
+    overflow-x: hidden;
+}
 body{
     display: flex;
     min-height: 100vh;
@@ -647,6 +650,8 @@ progress::-webkit-progress-bar {
 
 
 
+
+
 /*------------------------------------------------------------------------------*/
 /*----------------------------------Lancamento----------------------------------*/
 /*------------------------------------------------------------------------------*/
@@ -655,47 +660,64 @@ progress::-webkit-progress-bar {
 .modal-overlay {
     display: none; /* escondido por padrão */
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* fundo escurecido atrás do modal */
+
     align-items: center;
     justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.6); /* fundo escurecido atrás do modal */
+    
     backdrop-filter: blur(8px); /*faz ficar borrado o fundo*/
 }
+
 
 /*pai*/
 .modal-conteudo{
     background-color: var(--color-gray);
+
     width: 450px;
     min-height: 320px;
+    padding: 30px;
+
     border-radius: 13px;
     border: solid 1px var(--border-widget);
-    padding: 30px;
 }
+
+
 /*header (titulo, subtitulo e botao)*/
 .modal-header {
     display: flex;
     justify-content: space-between;
 }
+
+
 /*titulo*/
 .titule.lancamento {
     color: var(--text-white);
     font-size: var(--font-lg);
 }
 
+
 /*Subtitulo*/
 .subtitule.lancamento{
     color: var(--text-muted);
     font-size: var(--font-sm);
 }
+
+
 /*botao fechar*/
 .btn-fechar-modal{
     height: 30px;
     width: 30px;
-    border: solid 1px var(--border-widget);
+
     border-radius: 7px;
+    border: solid 1px var(--border-widget);
+
     background-color: var(--color-blue-gray);
     color: var(--color-slate);
 }
@@ -712,23 +734,29 @@ progress::-webkit-progress-bar {
     grid-template-columns: repeat(2,1fr);
     justify-content: center;
 }
+
+
 /*Btn Opacoes*/
 .opcao-lancamento {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 16px;
-    padding: 12px;
     grid-column: span;
+
     width: 185px;
     height: 100px;
-    background-color: var(--color-blue-gray);
-    border: solid 1px var(--border-widget);
+    gap: 16px;
+
+    padding: 12px;
     border-radius: 10px;
     margin: 10px;
+
+    background-color: var(--color-blue-gray);
+    border: solid 1px var(--border-widget);
     color: var(--text-white);
 }
+
 
 /*borda e fundo ao passar o mouse*/
 #btn-lancamento-investimento:hover{
@@ -755,6 +783,7 @@ progress::-webkit-progress-bar {
   height: 18px;
 }
 
+/*=================ARRUMAR MAIS TARDE==================*/
 /*cor de icon individual*/
 #icon-investimento{
     color: var(--color-green) ;
@@ -769,38 +798,44 @@ progress::-webkit-progress-bar {
     color: var(--color-purple);
 }
 
+
 /*-----------------------------------MODAL 2------------------------------------*/
 
 #etapa2{
     margin: 10px;
 }
+
+
 /* Botão voltar (dentro do header da etapa 2) */
 .btn-voltar {
     background: none;
     border: none;
+
     color: var(--color-slate);
     font-size: var(--font-xs);
+
     cursor: pointer;
     padding: 0;
 }
+
 
 /* título e subtítulo da etapa 2 reaproveitam o padrão que você já tem */
 #etapa2-titulo, #etapa3-titulo {
     color: var(--text-white);
     font-size: var(--font-lg);
+
     margin: 8px 0 2px;
 }
 
 #etapa2-subtitulo {
     color: var(--text-muted);
     font-size: var(--font-sm);
+
     margin-bottom: 20px;
 }
 
+
 /* Lista de itens */
-
-
-
 .lista-opcoes {
     display: flex;
     flex-direction: column;
@@ -810,17 +845,22 @@ progress::-webkit-progress-bar {
 .item-lista {
     display: flex;
     align-items: center;
-    gap: 12px;
+    
     background-color: var(--color-blue-gray);
     border: solid 1px var(--border-widget);
     border-radius: 10px;
+    
+    gap: 12px;
     padding: 14px 16px;
     width: 100%;
+
     cursor: pointer;
+
     color: var(--text-white);
     font-size: var(--font-xs);
     transition: border-color 0.15s ease;
 }
+
 
 .item-lista:hover {
     border-color: var(--cor-item);
@@ -959,98 +999,133 @@ progress::-webkit-progress-bar {
     cursor: pointer;
 }
 
-
-/*--------------------------------------Orcamento-------------------------------*/
+/*------------------------------------------------------------------------------*/
+/*------------------------------------Orcamento---------------------------------*/
+/*------------------------------------------------------------------------------*/
 
 /*Pai de todos*/
 #orcamento{
     grid-template-columns: none;
-    
 }
+
+
 /*Pai dos cards*/
 .cards-metricas{
     grid-template-columns: repeat(4, 1fr);
     display: flex;
     gap: 20px;
 }
+
+
 /*descricao do card*/
 .card-description{
     font-size: var(sm);
 }
+
+
 /*descricao negativa*/
 .card-description.metrica-negativa{
     color: var(--color-red);
 }
+
+
 /*Baner aviso*/
 .banner-alerta{
     display: flex;
+    align-items: center;
+
     background-color: var(--color-darker-red2);
+    color: var(--color-bright-red);
     border: solid 1px var(--color-dark-red);
     border-radius: 12px;
+
     padding: 13px;
-    color: var(--color-bright-red);
-    align-items: center;
     gap: 15px;
 }
+
+
 /*pai categoria*/
 .lista-categorias-orcamento {
     display: flex;
     flex-direction: column;
+
     gap: 20px; /* ajusta até ficar do tamanho que quer */
 }
+
+
 /*categoria individual*/
 .categoria-orcamento {
     display: flex;
     flex-direction: column;  
 }
 
+
 /*Titulo do dashboard*/
 .titulo-secao{
     color: var(--text-white);
+
     font-size: var(--font-sm);
 }
+
+
 /*painel da categoria dos gastos*/
 .painel-categorias{
     background-color: var(--widget-bg);
     border: 1px solid var(--border-widget);
     border-radius: 8px;
+
     width: 100%;
+
     padding: 20px;
     gap: 20px;
+    
     display: flex;
     flex-direction: column;
 }
+
+
 /*informacoes categoria*/
 .categoria-info {
     display: flex;
     justify-content: space-between;
     align-items: center;  
 }
+
+
 /*header categoria*/
 .categoria-orcamento-header{
     align-items: center;
     display: flex;
+
     gap: 12px;
 }
+
+
 /*categoria titulo*/
 .categoria-nome{
     font-size: var(--font-sm);
 }
+
 
 /*icon categoria*/
 .icon-categoria{
     width: 13px;
 }
 
+
 /*Pai Barra*/
 .barra-progresso-container {
     width: 100%;
     height: 6px;
+
     background-color: var(--color-blue-gray); /* trilho de fundo */
     border-radius: 999px; /* pílula, cantos bem arredondados */
+
     overflow: hidden;
     margin-top: 8px;
 }
+
+
 /*gasto atual*/
 .valor-gasto{
     color: var(--text-white);
@@ -1061,33 +1136,45 @@ progress::-webkit-progress-bar {
 .valor-percentual{
     color: var(--color-slate);
 }
+
+
 /*aviso estourou*/
 .tag-estourou{
     background-color: var(--color-darker-red3);
     color: var(--color-bright-red);
-    font-size: 10px;
+    
     padding: 5px;
     border-radius: 5px;
+
+    font-size: 10px;
 }
+
+
 /*Barra de Progresso*/
 .barra-progresso {
     height: 100%;
     border-radius: 999px;
+
     transition: width 0.4s ease; /* anima quando o valor muda */
 }
+
 
 /*valor em negativo*/
 .valor-negativo {
     color: var(--color-red);/*caso passe do orcamento o valor fica vermelho*/
-
 }
+
+
 
 @media(max-width:850px){
     .cards-metricas{
         grid-template-columns: repeat(2, 1fr);
         display: grid;
+
         gap: 20px;
     }
+
+
     .widget.card{
         grid-column: span 1;
     }
@@ -1096,11 +1183,16 @@ progress::-webkit-progress-bar {
     .categoria-info {
         flex-direction: column;
         align-items: flex-start;
+
         gap: 6px;
     }
+
+
     .dashboard,#investimentos{
         padding: 15px;
     }
+
+
     .cards-metricas,.informacoes-principais-inves,.categoria-investimento{
         gap: 11px;
     }
@@ -1112,15 +1204,18 @@ progress::-webkit-progress-bar {
     cursor: pointer;
 }
 
+
 .categoria-detalhamento {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
 }
 
+
 .categoria-orcamento.expandido .categoria-detalhamento {
     max-height: 500px;
 }
+
 
 .detalhamento-header {
     display: flex;
@@ -1131,11 +1226,13 @@ progress::-webkit-progress-bar {
     border-top: 1px solid var(--border-widget);
 }
 
+
 .detalhamento-titulo {
     font-size: 11px;
     letter-spacing: 1px;
     color: var(--color-gray-dark);
 }
+
 
 .detalhamento-filtro {
     background-color: var(--color-blue-gray);
@@ -1146,12 +1243,14 @@ progress::-webkit-progress-bar {
     padding: 4px 8px;
 }
 
+
 .detalhamento-lista {
     display: flex;
     flex-direction: column;
     gap: 2px;
     margin-top: 10px;
 }
+
 
 .item-detalhamento {
     display: flex;
@@ -1160,9 +1259,11 @@ progress::-webkit-progress-bar {
     padding: 8px 4px;
 }
 
+
 .item-detalhamento-icon {
     width: 16px;
 }
+
 
 .item-detalhamento-sub {
     color: var(--text-muted);
@@ -1171,10 +1272,12 @@ progress::-webkit-progress-bar {
     flex-shrink: 0;
 }
 
+
 .item-detalhamento-nome {
     flex: 1;
     color: var(--text-white);
 }
+
 
 .item-detalhamento-valor {
     color: var(--text-white);
@@ -1183,15 +1286,20 @@ progress::-webkit-progress-bar {
     text-align: right;
 }
 
+
 .item-detalhamento-data {
     color: var(--color-gray-dark);
     font-size: var(--font-sm);
     width: 90px;
     text-align: right;
 }
+
+
 .categoria-info {
     cursor: pointer;
 }
+
+
 .banner-alerta {
     display: none; /* o JS decide quando mostrar */
 }
@@ -1199,39 +1307,52 @@ progress::-webkit-progress-bar {
 
 
 
-/*-----------------METAS-----------------*/
+/*------------------------------------------------------------------------------*/
+/*--------------------------------------METAS-----------------------------------*/
+/*------------------------------------------------------------------------------*/
 /*pai de todos*/
 #metas{
     grid-template-columns: none;
 }
+
+
 /*Pai cards*/
 .cards-metas{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+
+
 .card-meta {
+    display: flex;
+    flex-direction: column;
+
     background-color: var(--color-gray);
     border: 1px solid var(--border-widget);
     border-radius: 10px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
+
     gap: 14px;
+    padding: 16px;
 }
 
+/* Cabeçalho do Card */
 .header-card-meta {
     display: flex;
     align-items: center;
+
     gap: 12px;
 }
+
 
 .header-meta-info {
     display: flex;
     flex-direction: column;
+
     gap: 2px;
     flex: 1;
 }
+
 
 .header-meta {
     display: flex;
@@ -1239,25 +1360,30 @@ progress::-webkit-progress-bar {
     align-items: center;
 }
 
+
 .meta-nome {
     font-weight: 600;
     color: var(--text-white);
 }
+
 
 .meta-percentual {
     font-weight: 700;
     color: var(--color-gold);
 }
 
+
 .meta-prazo {
     font-size: var(--font-sm);
     color: var(--text-muted);
 }
 
+
 .meta-rodape {
     display: flex;
     justify-content: space-between;
 }
+
 
 .meta-rodape-item {
     display: flex;
@@ -1265,24 +1391,29 @@ progress::-webkit-progress-bar {
     gap: 2px;
 }
 
+
 .meta-rodape-label {
     font-size: 10px;
     letter-spacing: 1px;
     color: var(--color-gray-dark);
 }
 
+
 .meta-rodape-valor {
     font-weight: 600;
     color: var(--text-white);
 }
 
+
 .meta-rodape-valor.valor-muted {
     color: var(--text-muted);
 }
 
+
 .meta-rodape-valor.valor-destaque {
     color: var(--color-gold);
 }
+
 
 .item-detalhamento:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.03);

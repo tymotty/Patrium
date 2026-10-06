@@ -2,7 +2,7 @@
 - [X] dashboard visao geral
 - [X] investimento
 - [X] lancamento modal 1,2,3 
-- [-] orcamento
+- [X] orcamento
 - [-] Metas
 - [ ] Personalizar
 - [ ] Configuracao
