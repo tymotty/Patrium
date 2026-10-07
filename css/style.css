@@ -650,355 +650,428 @@ progress::-webkit-progress-bar {
 
 
 
-
-
 /*------------------------------------------------------------------------------*/
-/*----------------------------------Lancamento----------------------------------*/
+/*-----------------------------------LANCAMENTO---------------------------------*/
 /*------------------------------------------------------------------------------*/
 
-/*Pai de todos*/
-.modal-overlay {
-    display: none; /* escondido por padrão */
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    align-items: center;
-    justify-content: center;
-
-    background-color: rgba(0, 0, 0, 0.6); /* fundo escurecido atrás do modal */
-    
-    backdrop-filter: blur(8px); /*faz ficar borrado o fundo*/
+/* ---------- Caixa do modal ---------- */
+#modal-lancamento {
+    padding: 16px;
 }
 
-
-/*pai*/
-.modal-conteudo{
-    background-color: var(--color-gray);
-
-    width: 450px;
-    min-height: 320px;
-    padding: 30px;
-
-    border-radius: 13px;
-    border: solid 1px var(--border-widget);
-}
-
-
-/*header (titulo, subtitulo e botao)*/
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-/*titulo*/
-.titule.lancamento {
-    color: var(--text-white);
-    font-size: var(--font-lg);
-}
-
-
-/*Subtitulo*/
-.subtitule.lancamento{
-    color: var(--text-muted);
-    font-size: var(--font-sm);
-}
-
-
-/*botao fechar*/
-.btn-fechar-modal{
-    height: 30px;
-    width: 30px;
-
-    border-radius: 7px;
-    border: solid 1px var(--border-widget);
-
-    background-color: var(--color-blue-gray);
-    color: var(--color-slate);
-}
-
-
-.modal-overlay.aberto {
-    display: flex; /* quando o JS adicionar essa classe, o modal aparece centralizado */
-}
-
-
-/*Pai Opacoes de lancamento*/
-.modal-opcoes{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    justify-content: center;
-}
-
-
-/*Btn Opacoes*/
-.opcao-lancamento {
+#modal-lancamento .modal-conteudo {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 580px;
+    max-height: calc(100dvh - 32px);
+    margin: 0;
+    overflow: hidden; /* quem rola é o .lanc-corpo, o rodapé fica sempre visível */
+}
+
+#modal-lancamento .modal-header {
     align-items: flex-start;
-    justify-content: center;
-    grid-column: span;
-
-    width: 185px;
-    height: 100px;
     gap: 16px;
-
-    padding: 12px;
-    border-radius: 10px;
-    margin: 10px;
-
-    background-color: var(--color-blue-gray);
-    border: solid 1px var(--border-widget);
-    color: var(--text-white);
-}
-
-
-/*borda e fundo ao passar o mouse*/
-#btn-lancamento-investimento:hover{
-    background-color:var(--color-darker-green) ;
-    border: solid 2px var(--color-green);
-}
-#btn-lancamento-despesas:hover{
-    background-color:var(--color-darker-red) ;
-    border: solid 2px var(--color-red);
-}
-#btn-lancamento-emergencia:hover{
-    background-color:var(--color-darker-gold) ;
-    border:solid 2px var(--color-gold);
-}
-#btn-lancamento-lazer:hover{
-    background-color:var(--color-darker-purple) ;
-    border: solid 2px var(--color-purple);
-}
-
-
-/*icon*/
-.icon-lancamento {
-  width: 18px;           
-  height: 18px;
-}
-
-/*=================ARRUMAR MAIS TARDE==================*/
-/*cor de icon individual*/
-#icon-investimento{
-    color: var(--color-green) ;
-}
-#icon-despesas{
-    color: var(--color-red) ;
-}
-#icon-emergencia{
-    color: var(--color-gold) ;
-}
-#icon-lazer{
-    color: var(--color-purple);
-}
-
-
-/*-----------------------------------MODAL 2------------------------------------*/
-
-#etapa2{
-    margin: 10px;
-}
-
-
-/* Botão voltar (dentro do header da etapa 2) */
-.btn-voltar {
-    background: none;
-    border: none;
-
-    color: var(--color-slate);
-    font-size: var(--font-xs);
-
-    cursor: pointer;
-    padding: 0;
-}
-
-
-/* título e subtítulo da etapa 2 reaproveitam o padrão que você já tem */
-#etapa2-titulo, #etapa3-titulo {
-    color: var(--text-white);
-    font-size: var(--font-lg);
-
-    margin: 8px 0 2px;
-}
-
-#etapa2-subtitulo {
-    color: var(--text-muted);
-    font-size: var(--font-sm);
-
-    margin-bottom: 20px;
-}
-
-
-/* Lista de itens */
-.lista-opcoes {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.item-lista {
-    display: flex;
-    align-items: center;
-    
-    background-color: var(--color-blue-gray);
-    border: solid 1px var(--border-widget);
-    border-radius: 10px;
-    
-    gap: 12px;
-    padding: 14px 16px;
-    width: 100%;
-
-    cursor: pointer;
-
-    color: var(--text-white);
-    font-size: var(--font-xs);
-    transition: border-color 0.15s ease;
-}
-
-
-.item-lista:hover {
-    border-color: var(--cor-item);
-}
-/* nome do item preenche o espaço entre a bolinha e a seta */
-.item-lista span:nth-child(2) {
-    flex: 1;
-    text-align: left;
-}
-
-.legenda-cor {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
     flex-shrink: 0;
 }
 
-.seta {
+.lanc-corpo {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px 2px 8px; /* espaço p/ o contorno de foco não ser cortado */
+}
+
+.lanc-corpo.travado {
+    pointer-events: none; /* evita duplo clique durante o auto-avanço */
+}
+
+.dica-toque {
+    flex-shrink: 0;
+    margin-top: 12px;
+    text-align: center;
+    font-size: var(--font-xs);
     color: var(--text-muted);
-    font-size: 14px;
 }
 
-/* Botão "Adicionar Novo" — visual tracejado, distinto da lista */
-.item-adicionar {
-    border: 1.5px dashed var(--border-widget);
-    background: transparent;
-    color: var(--color-green);
-    justify-content: center;
-    font-weight: 500;
+#modal-lancamento [hidden] {
+    display: none !important;
 }
 
-.item-adicionar:hover {
+/* ---------- Indicador de etapas ---------- */
+.stepper {
+    display: flex;
+    list-style: none;
+    margin: 24px 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.stepper-item {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* linha que liga a bolinha anterior a esta */
+.stepper-item:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: -50%;
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-widget);
+    z-index: 0;
+}
+
+.stepper-item.concluida::before,
+.stepper-item.atual::before {
+    background-color: var(--color-green);
+}
+
+.stepper-bolinha {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--border-widget);
+    background-color: var(--color-blue-gray);
+    font-size: var(--font-xs);
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.stepper-item.concluida .stepper-bolinha,
+.stepper-item.atual .stepper-bolinha {
+    background-color: var(--color-green);
     border-color: var(--color-green);
-}
-.nome-item-categoria{
-    font-size: var(--font-base)
+    color: var(--color-bg-dark);
 }
 
-/*---------------ETAPA 3-----------*/
+.stepper-item.atual .stepper-nome {
+    color: var(--text-white);
+    font-weight: 600;
+}
 
-/* Tags (Investimento / Renda Fixa) */
-.etapa3-tags {
+/* ---------- Cards de escolha (tipo, categoria, subcategoria, destino) ---------- */
+.grade-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.card-opcao {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 16px;
+    font: inherit;
+    text-align: left;
+    color: var(--text-white);
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.card-opcao .icone {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    color: var(--cor-item, var(--text-muted));
+}
+
+.card-opcao:hover,
+.card-opcao.selecionado {
+    border-color: var(--cor-item, var(--color-green));
+    background-color: color-mix(in srgb, var(--cor-item, var(--color-green)) 12%, var(--color-blue-gray));
+}
+
+.card-opcao:focus-visible {
+    outline: 2px solid var(--cor-item, var(--color-green));
+    outline-offset: 2px;
+}
+
+.card-nome {
+    font-size: var(--font-sm);
+    font-weight: 600;
+}
+
+.card-desc {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+}
+
+.card-desc.estourou { color: var(--color-red); }
+.card-desc.limite   { color: var(--color-gold); }
+
+/* subcategorias: ícone ao lado do nome, 2 colunas */
+.grade-cards.duas-colunas {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.card-opcao.card-linha {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+}
+
+.card-opcao.card-linha .icone {
+    margin-bottom: 0;
+}
+
+/* "+ Nova subcategoria" */
+.card-opcao.card-novo {
+    border-style: dashed;
+    background-color: transparent;
+    color: var(--text-muted);
+}
+
+.card-opcao.card-novo .icone {
+    color: var(--text-muted);
+}
+
+.novo-inline {
+    grid-column: 1 / -1;
     display: flex;
     gap: 10px;
-    margin: 16px 0 24px;
 }
-/*Titulo*/
-#etapa3-titulo{
-    font-size: var(--font-base);
-}
-/*tags: investimento - FIIs...*/
-.tag {
-    padding: 4px 10px;
-    border-radius: 6px;
+
+.novo-inline input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+    font: inherit;
     font-size: var(--font-sm);
-    color: var(--cor-tag);
-    background-color: color-mix(in srgb, var(--cor-tag) 15%, transparent);
-}
-
-/* Campos do formulário */
-.campo-form {
-    margin-bottom: 18px;
-}
-
-.campo-form label {
-    display: block;
-    color: var(--text-muted);
-    font-size: var(--font-xs);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-}
-/*campo descricao*/
-.campo-form input[type="text"] {
-    width: 100%;
+    color: var(--text-white);
     background-color: var(--color-blue-gray);
     border: 1px solid var(--cor-item, var(--border-widget));
     border-radius: 10px;
-    padding: 14px 16px;
-    color: var(--text-white);
-    font-size: var(--font-sm);
 }
 
-.campo-form input[type="text"]:focus {
-    outline: none;
-    border:  var(--cor-item, var(--border-widget));
+.novo-inline input:focus {
+    outline: 2px solid var(--cor-item, var(--color-green));
+    outline-offset: 1px;
 }
 
-/* Campo de valor com prefixo R$ */
-.input-valor-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: var(--color-blue-gray);
-    border: 1px solid var(--border-widget);
-    border-radius: 10px;
-    padding: 0px 16px;
-}
-/*R$ do lado do input*/
-.prefixo-moeda {
-    color: var(--text-muted);
-}
-
-.input-valor-wrapper input {
-    background: none;
-    border: none;
-    color: var(--text-white);
-    font-size: var(--font-xs);
-    width: 100%;
-}
-
-.input-valor-wrapper input:focus {
-    outline: none;
-}
-#input-valor{
-    border: none;
-}
-
-
-/* Botão confirmar — desabilitado até ter valor */
-.btn-confirmar-lancamento {
-    width: 100%;
-    padding: 16px;
-    border-radius: 10px;
-    border: none;
-    background-color: var(--color-blue-gray);
-    color: var(--text-muted);
+.btn-inline {
+    padding: 0 18px;
+    font: inherit;
     font-size: var(--font-sm);
     font-weight: 600;
-    cursor: not-allowed;
-}
-
-.btn-confirmar-lancamento.ativo {
-    background-color: var(--color-green);
     color: var(--color-bg-dark);
+    background-color: var(--cor-item, var(--color-green));
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
 }
 
+.erro-campo {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: var(--font-xs);
+    color: var(--color-red);
+}
+
+.estado-vazio {
+    padding: 28px 12px;
+    text-align: center;
+    font-size: var(--font-sm);
+    color: var(--text-muted);
+}
+
+/* ---------- Categoria escolhida (etapa subcategoria) ---------- */
+.categoria-escolhida {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    border: 1px solid color-mix(in srgb, var(--cor-item) 35%, transparent);
+    border-radius: 12px;
+    background-color: color-mix(in srgb, var(--cor-item) 10%, transparent);
+}
+
+.categoria-escolhida .icone-caixa {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: color-mix(in srgb, var(--cor-item) 18%, transparent);
+    color: var(--cor-item);
+}
+
+.categoria-escolhida .texto {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+.rotulo-pequeno {
+    font-size: var(--font-xs);
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.btn-trocar {
+    background: none;
+    border: none;
+    font: inherit;
+    font-size: var(--font-xs);
+    font-weight: 600;
+    color: var(--cor-item);
+    cursor: pointer;
+}
+
+/* ---------- Detalhes ---------- */
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    border: 1px solid color-mix(in srgb, var(--cor-item, var(--color-green)) 30%, transparent);
+    border-radius: 10px;
+    background-color: color-mix(in srgb, var(--cor-item, var(--color-green)) 10%, transparent);
+}
+
+.breadcrumb .sep { opacity: 0.6; }
+.breadcrumb .breadcrumb-atual { color: var(--cor-item, var(--color-green)); }
+
+.campo-linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.campo-form .opcional {
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.campo-form input[type="date"],
+.campo-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font: inherit;
+    font-size: var(--font-sm);
+    color: var(--text-white);
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 10px;
+    color-scheme: dark;
+}
+
+.campo-form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.campo-form input:focus-visible,
+.campo-form textarea:focus-visible {
+    outline: 2px solid var(--cor-item, var(--color-green));
+    outline-offset: 1px;
+}
+
+/* campo de valor: o input fica "colado" no R$ */
+.campo-form .input-valor-wrapper input[type="text"] {
+    padding: 14px 0;
+    border: none;
+    background: none;
+}
+
+.campo-form .input-valor-wrapper input[type="text"]:focus {
+    outline: none;
+}
+
+.campo-form .input-valor-wrapper:focus-within {
+    outline: 2px solid var(--cor-item, var(--color-green));
+    outline-offset: 1px;
+}
+
+/* ---------- Rodapé ---------- */
+.modal-rodape {
+    display: flex;
+    flex-shrink: 0;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.btn-rodape-voltar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    font: inherit;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-rodape-voltar .icone {
+    width: 16px;
+    height: 16px;
+}
+
+.modal-rodape .btn-confirmar-lancamento {
+    flex: 2;
+    width: auto;
+}
+
+/* ---------- Mobile: modal vira "folha" de baixo ---------- */
+@media (max-width: 560px) {
+    #modal-lancamento {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    #modal-lancamento .modal-conteudo {
+        max-width: none;
+        max-height: 94dvh;
+        padding: 22px 18px;
+        border-radius: 18px 18px 0 0;
+    }
+
+    .grade-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .campo-linha {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-opcao { transition: none; }
+}
 /*------------------------------------------------------------------------------*/
 /*------------------------------------Orcamento---------------------------------*/
 /*------------------------------------------------------------------------------*/
