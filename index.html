@@ -3,6 +3,7 @@
 <head>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lancamento.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patrium</title>
@@ -33,11 +34,12 @@
                     <span>Investimentos</span>
                 </a></li>
 
-                <li><button class="nav-item" data-section="lancamentos" id="nav-lancamentos">
+                <li><button data-abrir-lancamento class="nav-item" data-section="lancamentos"
+                     id="nav-lancamentos">
                     <i data-lucide="plus-circle"></i>
                     <span>Lançamentos</span>
                 </button></li>
-
+                
                 <li><a href="orcamento.html" class="nav-item" id="nav-orcamento">
                     <i data-lucide="dollar-sign"></i>
                     <span>Orçamento</span>
@@ -283,12 +285,8 @@
 
 
 
-
-
 <!--------------------------------------------------------------------------------->
-<!-----------------------------------Lancamento------------------------------------>
-<!-- Substitui TODO o bloco antigo (etapa1, etapa2 e etapa3).                       -->
-<!-- As etapas agora são geradas pelo js/lancamento.js dentro de #lanc-corpo.       -->
+<!----------------------------------Lancamento------------------------------------->
 <!--------------------------------------------------------------------------------->
 <div class="modal-overlay" id="modal-lancamento" role="dialog" aria-modal="true" aria-labelledby="lanc-titulo">
     <div class="modal-conteudo" id="lanc-modal">
@@ -316,6 +314,7 @@
 
 <!---Script--->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="js/lancamento.js"></script>
     <script>lucide.createIcons();</script>
     <script src="js/javaScript.js"></script>
 </body>

@@ -1,0 +1,471 @@
+
+/*------------------------------------------------------------------------------*/
+/*-----------------------------------LANCAMENTO---------------------------------*/
+/*------------------------------------------------------------------------------*/
+
+/* ---------- Caixa do modal ---------- */
+/* base do modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+.modal-overlay.aberto {
+    display: flex;
+}
+
+.modal-conteudo {
+    background-color: var(--color-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 13px;
+    padding: 30px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.titule.lancamento {
+    color: var(--text-white);
+    font-size: var(--font-lg);
+}
+
+.subtitule.lancamento {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+}
+
+.btn-fechar-modal {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border-widget);
+    border-radius: 7px;
+    background-color: var(--color-blue-gray);
+    color: var(--color-slate);
+    cursor: pointer;
+}
+
+#modal-lancamento {
+    padding: 16px;
+}
+
+#modal-lancamento .modal-conteudo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 580px;
+    max-height: calc(100dvh - 32px);
+    margin: 0;
+    overflow: hidden; /* quem rola é o .lanc-corpo, o rodapé fica sempre visível */
+}
+
+#modal-lancamento .modal-header {
+    align-items: flex-start;
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+.lanc-corpo {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px 2px 8px; /* espaço p/ o contorno de foco não ser cortado */
+}
+
+.lanc-corpo.travado {
+    pointer-events: none; /* evita duplo clique durante o auto-avanço */
+}
+
+.dica-toque {
+    flex-shrink: 0;
+    margin-top: 12px;
+    text-align: center;
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+}
+
+#modal-lancamento [hidden] {
+    display: none !important;
+}
+
+/* ---------- Indicador de etapas ---------- */
+.stepper {
+    display: flex;
+    list-style: none;
+    margin: 24px 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.stepper-item {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* linha que liga a bolinha anterior a esta */
+.stepper-item:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: -50%;
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-widget);
+    z-index: 0;
+}
+
+.stepper-item.concluida::before,
+.stepper-item.atual::before {
+    background-color: var(--color-green);
+}
+
+.stepper-bolinha {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--border-widget);
+    background-color: var(--color-blue-gray);
+    font-size: var(--font-xs);
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.stepper-item.concluida .stepper-bolinha,
+.stepper-item.atual .stepper-bolinha {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+    color: var(--color-bg-dark);
+}
+
+.stepper-item.atual .stepper-nome {
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+/* ---------- Cards de escolha (tipo, categoria, subcategoria, destino) ---------- */
+.grade-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.card-opcao {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 16px;
+    font: inherit;
+    text-align: left;
+    color: var(--text-white);
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.card-opcao .icone {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    color: var(--cor-item, var(--text-muted));
+}
+
+.card-opcao:hover,
+.card-opcao.selecionado {
+    border-color: var(--cor-item, var(--color-green));
+    background-color: color-mix(in srgb, var(--cor-item, var(--color-green)) 12%, var(--color-blue-gray));
+}
+
+.card-opcao:focus-visible {
+    outline: 2px solid var(--cor-item, var(--color-green));
+    outline-offset: 2px;
+}
+
+.card-nome {
+    font-size: var(--font-sm);
+    font-weight: 600;
+}
+
+.card-desc {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+}
+
+.card-desc.estourou { color: var(--color-red); }
+.card-desc.limite   { color: var(--color-gold); }
+
+/* subcategorias: ícone ao lado do nome, 2 colunas */
+.grade-cards.duas-colunas {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.card-opcao.card-linha {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+}
+
+.card-opcao.card-linha .icone {
+    margin-bottom: 0;
+}
+
+/* "+ Nova subcategoria" */
+.card-opcao.card-novo {
+    border-style: dashed;
+    background-color: transparent;
+    color: var(--text-muted);
+}
+
+.card-opcao.card-novo .icone {
+    color: var(--text-muted);
+}
+
+.novo-inline {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 10px;
+}
+
+.novo-inline input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: var(--font-sm);
+    color: var(--text-white);
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--cor-item, var(--border-widget));
+    border-radius: 10px;
+}
+
+.novo-inline input:focus {
+    outline: 2px solid var(--cor-item, var(--color-green));
+    outline-offset: 1px;
+}
+
+.btn-inline {
+    padding: 0 18px;
+    font: inherit;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--color-bg-dark);
+    background-color: var(--cor-item, var(--color-green));
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.erro-campo {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: var(--font-xs);
+    color: var(--color-red);
+}
+
+.estado-vazio {
+    padding: 28px 12px;
+    text-align: center;
+    font-size: var(--font-sm);
+    color: var(--text-muted);
+}
+
+/* ---------- Categoria escolhida (etapa subcategoria) ---------- */
+.categoria-escolhida {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    border: 1px solid color-mix(in srgb, var(--cor-item) 35%, transparent);
+    border-radius: 12px;
+    background-color: color-mix(in srgb, var(--cor-item) 10%, transparent);
+}
+
+.categoria-escolhida .icone-caixa {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: color-mix(in srgb, var(--cor-item) 18%, transparent);
+    color: var(--cor-item);
+}
+
+.categoria-escolhida .texto {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+.rotulo-pequeno {
+    font-size: var(--font-xs);
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.btn-trocar {
+    background: none;
+    border: none;
+    font: inherit;
+    font-size: var(--font-xs);
+    font-weight: 600;
+    color: var(--cor-item);
+    cursor: pointer;
+}
+
+/* ---------- Detalhes ---------- */
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    border: 1px solid color-mix(in srgb, var(--cor-item, var(--color-green)) 30%, transparent);
+    border-radius: 10px;
+    background-color: color-mix(in srgb, var(--cor-item, var(--color-green)) 10%, transparent);
+}
+
+.breadcrumb .sep { opacity: 0.6; }
+.breadcrumb .breadcrumb-atual { color: var(--cor-item, var(--color-green)); }
+
+.campo-linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.campo-form .opcional {
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.campo-form input[type="date"],
+.campo-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font: inherit;
+    font-size: var(--font-sm);
+    color: var(--text-white);
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 10px;
+    color-scheme: dark;
+}
+
+.campo-form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.campo-form input:focus-visible,
+.campo-form textarea:focus-visible {
+    outline: 2px solid var(--cor-item, var(--color-green));
+    outline-offset: 1px;
+}
+
+/* campo de valor: o input fica "colado" no R$ */
+.campo-form .input-valor-wrapper input[type="text"] {
+    padding: 14px 0;
+    border: none;
+    background: none;
+}
+
+.campo-form .input-valor-wrapper input[type="text"]:focus {
+    outline: none;
+}
+
+.campo-form .input-valor-wrapper:focus-within {
+    outline: 2px solid var(--cor-item, var(--color-green));
+    outline-offset: 1px;
+}
+
+/* ---------- Rodapé ---------- */
+.modal-rodape {
+    display: flex;
+    flex-shrink: 0;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.btn-rodape-voltar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    font: inherit;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-rodape-voltar .icone {
+    width: 16px;
+    height: 16px;
+}
+
+.modal-rodape .btn-confirmar-lancamento {
+    flex: 2;
+    width: auto;
+}
+
+/* ---------- Mobile: modal vira "folha" de baixo ---------- */
+@media (max-width: 560px) {
+    #modal-lancamento {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    #modal-lancamento .modal-conteudo {
+        max-width: none;
+        max-height: 94dvh;
+        padding: 22px 18px;
+        border-radius: 18px 18px 0 0;
+    }
+
+    .grade-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .campo-linha {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-opcao { transition: none; }
+}
