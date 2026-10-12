@@ -468,4 +468,50 @@
 
 @media (prefers-reduced-motion: reduce) {
     .card-opcao { transition: none; }
+}/* base do modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+.modal-overlay.aberto {
+    display: flex;
+}
+
+.modal-conteudo {
+    background-color: var(--color-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 13px;
+    padding: 30px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.titule.lancamento {
+    color: var(--text-white);
+    font-size: var(--font-lg);
+}
+
+.subtitule.lancamento {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+}
+
+.btn-fechar-modal {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border-widget);
+    border-radius: 7px;
+    background-color: var(--color-blue-gray);
+    color: var(--color-slate);
+    cursor: pointer;
 }
