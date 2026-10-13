@@ -54,8 +54,11 @@
 
 #modal-lancamento {
     padding: 16px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
-
+#modal-lancamento .titule.lancamento {
+    font-family: 'Playfair Display', Georgia, serif;
+}
 #modal-lancamento .modal-conteudo {
     display: flex;
     flex-direction: column;
@@ -362,12 +365,37 @@
     grid-template-columns: 1fr 1fr;
     gap: 14px;
 }
-
+.campo-form {
+    margin-bottom: 18px;
+}
 .campo-form .opcional {
     text-transform: none;
     letter-spacing: 0;
 }
-
+.campo-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: var(--font-xs);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+ .campo-form input[type="text"] {
+    width: 100%;
+    padding: 14px 16px;
+    font: inherit;
+    font-size: var(--font-sm);
+    color: var(--text-white);
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 10px;
+}
+.campo-form input::placeholder,
+.campo-form textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
 .campo-form input[type="date"],
 .campo-form textarea {
     width: 100%;
@@ -406,6 +434,69 @@
 .campo-form .input-valor-wrapper:focus-within {
     outline: 2px solid var(--cor-item, var(--color-green));
     outline-offset: 1px;
+}
+/* ---------- ícone dentro do campo (descrição e data) ---------- */
+.campo-com-icone {
+    position: relative;
+}
+ 
+.campo-com-icone .icone {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+ 
+.campo-form .campo-com-icone input[type] {
+    padding-left: 46px;
+}
+
+
+/* ---------- valor com prefixo R$ ---------- */
+.input-valor-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    background-color: var(--color-blue-gray);
+    border: 1px solid var(--border-widget);
+    border-radius: 10px;
+}
+ 
+.prefixo-moeda {
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+}
+ 
+.input-valor-wrapper input {
+    width: 100%;
+    font: inherit;
+    font-size: var(--font-sm);
+    color: var(--text-white);
+}
+
+/* ---------- botão salvar ---------- */
+.btn-confirmar-lancamento {
+    padding: 16px;
+    font: inherit;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    background-color: var(--color-blue-gray);
+    border: none;
+    border-radius: 10px;
+    cursor: not-allowed;
+}
+ 
+.btn-confirmar-lancamento.ativo {
+    color: var(--color-bg-dark);
+    background-color: var(--color-green);
+    cursor: pointer;
 }
 
 /* ---------- Rodapé ---------- */
