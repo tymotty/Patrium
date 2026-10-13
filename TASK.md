@@ -10,11 +10,11 @@
 
 --Fix
 - [ ] style="background-color de legenda-color como fonte unica
-- [ ] etapa3-titulo ajeitar todos dos etapas para dentro do header
+- [X] etapa3-titulo ajeitar todos dos etapas para dentro do header
 - [ ] Add grafico em visao geral
 - [ ] Add grafico especifico de alcocao em visao geral
 - [ ] Add sistema de lancamento especifico para investimento 
-- [ ] Add historico para cada categoria orcamento
+- [X] Add historico para cada categoria orcamento
 - [ ] Icone da Pagina (logo) 
 
 Lancamento:
