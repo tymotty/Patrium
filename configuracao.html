@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lancamento.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrium</title>
+</head>
+<body>
+
+    <!-- nav injetado pelo componentes.js (igual às outras páginas) -->
+    <div id="nav-placeholder"></div>
+
+    <!-- ajuste a classe do <main> para a mesma que as outras páginas usam -->
+    <main class="conteudo-principal">
+
+        <header class="pagina-header">
+            <h1 class="titulo-pagina">Configurações</h1>
+            <p class="subtitulo-pagina">Ajuste o Patrium do seu jeito</p>
+        </header>
+
+        <!-- duas colunas: esquerda (Preferências + Notificações) | direita (Segurança + Dados) -->
+        <div class="config-grid">
+
+            <div class="config-coluna">
+
+                <!--------------------------- PREFERÊNCIAS GERAIS --------------------------->
+                <section class="config-card" aria-labelledby="cfg-preferencias-titulo">
+                    <header class="config-card-header">
+                        <span class="config-card-icone"><i data-lucide="sliders-horizontal"></i></span>
+                        <div>
+                            <h2 id="cfg-preferencias-titulo">Preferências gerais</h2>
+                            <p>Aparência e formato das informações</p>
+                        </div>
+                    </header>
+
+                    <div class="config-campos-linha">
+                        <div class="config-campo">
+                            <label for="cfg-idioma">Idioma</label>
+                            <select id="cfg-idioma" data-config="idioma">
+                                <option value="pt-BR" selected>Português (Brasil)</option>
+                                <option value="en-US">English (US)</option>
+                                <option value="es-ES">Español</option>
+                            </select>
+                        </div>
+                        <div class="config-campo">
+                            <label for="cfg-semana">Início da semana</label>
+                            <select id="cfg-semana" data-config="inicioSemana">
+                                <option value="segunda" selected>Segunda-feira</option>
+                                <option value="domingo">Domingo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="config-item">
+                        <div class="config-item-texto">
+                            <label for="cfg-ocultar-valores">Ocultar valores</label>
+                            <p>Esconde saldos e patrimônio ao abrir o app</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="cfg-ocultar-valores" data-config="ocultarValores" role="switch">
+                            <span class="switch-trilho"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-item">
+                        <div class="config-item-texto">
+                            <label for="cfg-valores-compactos">Valores compactos</label>
+                            <p>Exibe R$ 148 mil em vez do valor completo</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="cfg-valores-compactos" data-config="valoresCompactos" role="switch" checked>
+                            <span class="switch-trilho"></span>
+                        </label>
+                    </div>
+                </section>
+
+                <!--------------------------- NOTIFICAÇÕES --------------------------->
+                <section class="config-card" aria-labelledby="cfg-notificacoes-titulo">
+                    <header class="config-card-header">
+                        <span class="config-card-icone"><i data-lucide="bell"></i></span>
+                        <div>
+                            <h2 id="cfg-notificacoes-titulo">Notificações</h2>
+                            <p>Escolha os avisos que deseja receber</p>
+                        </div>
+                    </header>
+
+                    <div class="config-item">
+                        <div class="config-item-texto">
+                            <label for="cfg-resumo-semanal">Resumo semanal</label>
+                            <p>Balanço do patrimônio toda segunda-feira</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="cfg-resumo-semanal" data-config="resumoSemanal" role="switch" checked>
+                            <span class="switch-trilho"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-item">
+                        <div class="config-item-texto">
+                            <label for="cfg-vencimentos">Contas e vencimentos</label>
+                            <p>Lembretes dois dias antes do vencimento</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="cfg-vencimentos" data-config="contasVencimentos" role="switch" checked>
+                            <span class="switch-trilho"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-item">
+                        <div class="config-item-texto">
+                            <label for="cfg-mercado">Movimentos do mercado</label>
+                            <p>Alertas de variação acima de 5% nos seus ativos</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="cfg-mercado" data-config="movimentosMercado" role="switch">
+                            <span class="switch-trilho"></span>
+                        </label>
+                    </div>
+                </section>
+            </div>
+
+            <div class="config-coluna">
+
+                <!--------------------------- SEGURANÇA --------------------------->
+                <section class="config-card" aria-labelledby="cfg-seguranca-titulo">
+                    <header class="config-card-header">
+                        <span class="config-card-icone"><i data-lucide="shield"></i></span>
+                        <div>
+                            <h2 id="cfg-seguranca-titulo">Segurança</h2>
+                            <p>Proteção de acesso e dispositivos</p>
+                        </div>
+                    </header>
+
+                    <div class="config-item">
+                        <div class="config-item-texto">
+                            <label for="cfg-2fa">Autenticação em duas etapas</label>
+                            <p>Código adicional ao entrar em um novo dispositivo</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="cfg-2fa" data-config="doisFatores" role="switch" checked>
+                            <span class="switch-trilho"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-item">
+                        <div class="config-item-texto">
+                            <label for="cfg-biometria">Biometria</label>
+                            <p>Use Face ID ou impressão digital no celular</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="cfg-biometria" data-config="biometria" role="switch">
+                            <span class="switch-trilho"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-sessao">
+                        <span class="config-sessao-ponto" aria-hidden="true"></span>
+                        <div class="config-sessao-texto">
+                            <strong>Sessão atual</strong>
+                            <span id="cfg-sessao-info">Chrome · São Paulo, BR</span>
+                        </div>
+                        <span class="config-sessao-status">ATIVA</span>
+                    </div>
+
+                    <button type="button" class="config-btn config-btn-largo" id="cfg-encerrar-sessoes">
+                        Encerrar outras sessões
+                    </button>
+                </section>
+
+                <!--------------------------- DADOS E PRIVACIDADE --------------------------->
+                <section class="config-card" aria-labelledby="cfg-dados-titulo">
+                    <header class="config-card-header">
+                        <span class="config-card-icone"><i data-lucide="database"></i></span>
+                        <div>
+                            <h2 id="cfg-dados-titulo">Dados e privacidade</h2>
+                            <p>Backup, exportação e controle dos seus dados</p>
+                        </div>
+                    </header>
+
+                    <div class="config-item">
+                        <div class="config-item-texto">
+                            <label for="cfg-backup">Backup automático</label>
+                            <p>Sincronização criptografada todos os dias</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="cfg-backup" data-config="backupAutomatico" role="switch" checked>
+                            <span class="switch-trilho"></span>
+                        </label>
+                    </div>
+
+                    <div class="config-botoes-linha">
+                        <button type="button" class="config-btn" id="cfg-exportar-pdf">Exportar relatório PDF</button>
+                        <button type="button" class="config-btn" id="cfg-baixar-csv">Baixar dados CSV</button>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+<!--------------------------------------------------------------------------------->
+<!----------------------------------Lancamento------------------------------------->
+<!--------------------------------------------------------------------------------->
+<div class="modal-overlay" id="modal-lancamento" role="dialog" aria-modal="true" aria-labelledby="lanc-titulo">
+    <div class="modal-conteudo" id="lanc-modal">
+
+        <header class="modal-header">
+            <div>
+                <h2 class="titule lancamento" id="lanc-titulo">Novo lançamento</h2>
+                <p class="subtitule lancamento" id="lanc-subtitulo">O que você deseja registrar?</p>
+            </div>
+            <button type="button" class="btn-fechar-modal" id="lanc-fechar" aria-label="Fechar">✕</button>
+        </header>
+
+        <!-- indicador de etapas (gerado pelo JS) -->
+        <ol class="stepper" id="lanc-stepper" aria-label="Etapas do lançamento"></ol>
+
+        <!-- conteúdo da etapa atual (gerado pelo JS) -->
+        <div class="lanc-corpo" id="lanc-corpo"></div>
+
+        <p class="dica-toque" id="lanc-dica">Toque em uma opção para continuar</p>
+
+        <!-- Voltar / Salvar lançamento (gerado pelo JS) -->
+        <footer class="modal-rodape" id="lanc-rodape"></footer>
+    </div>
+</div>
+
+<!---Script--->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="js/lancamento.js"></script>
+    <script>lucide.createIcons();</script>
+    <script src="js/javaScript.js"></script>
+</body>
+</html>
