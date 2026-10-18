@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lancamento.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrium</title>
+</head>
+<body>
+  
+<!--------------------------------------------------------------------------------->
+<!------------------------------------NAV------------------------------------------>
+<!--------------------------------------------------------------------------------->
+    <aside class="sidebar">
+        <div class="brand">
+            <a href="index.html" class="brand" aria-label="Ir para a visão geral">
+                <h1 id="title">Patrium</h1>
+            </a>
+            <p id="subtitle">Gerenciamento de Patrimônio</p>
+        </div>
+
+        <!-----MENU----->
+        <nav aria-label="Menu de navegação">
+            <ul>
+                <li><a href="index.html" class="nav-item" id="nav-visao-geral">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Visão Geral</span>
+                </a></li>
+
+                <li><a href="investimentos.html" class="nav-item" id="nav-investimentos">
+                    <i data-lucide="trending-up"></i>
+                    <span>Investimentos</span>
+                </a></li>
+
+               <li><button data-abrir-lancamento class="nav-item" data-section="lancamentos"
+                     id="nav-lancamentos">
+                    <i data-lucide="plus-circle"></i>
+                    <span>Lançamentos</span>
+                </button></li>
+
+                <li><a href="orcamento.html" class="nav-item" id="nav-orcamento">
+                    <i data-lucide="dollar-sign"></i>
+                    <span>Orçamento</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="metas.html" class="nav-item" id="nav-metas">
+                    <i data-lucide="target"></i>
+                    <span>Metas</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="historico.html" class="nav-item" id="nav-historico">
+                    <i data-lucide="clock"></i>
+                    <span>Histórico</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="#personalizar" class="nav-item" id="nav-personalizar">
+                    <i data-lucide="edit"></i>
+                    <span>Personalizar</span>
+                </a></li>
+
+                <li class="nav-hide-mobile"><a href="configuracoes.html" class="nav-item" id="nav-configuracoes">
+                    <i data-lucide="settings"></i>
+                    <span>Configurações</span>
+                </a></li>
+
+                <li><a href="conta.html" class="nav-item" id="nav-conta">
+                    <i data-lucide="user"></i>
+                    <span>Conta</span>
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
+
+  <main class="conteudo-principal">
+
+    <header class="pagina-header">
+      <h1 class="titulo-pagina">Conta</h1>
+    </header>
+
+    <!-- Tudo em linha: um bloco embaixo do outro -->
+    <div class="conta-lista">
+
+      <!-- ===================== PERFIL ===================== -->
+      <section class="conta-card" aria-labelledby="titulo-perfil">
+        <h2 class="conta-card-titulo" id="titulo-perfil">Perfil</h2>
+
+        <div class="conta-perfil-topo">
+          <div class="conta-avatar conta-avatar-grande" aria-hidden="true" id="perfil-avatar">LM</div>
+          <div>
+            <p class="conta-perfil-nome" id="perfil-nome-exibido">Lucas Mendes</p>
+            <span class="conta-badge conta-badge-pro">PRO</span>
+          </div>
+        </div>
+
+        <form id="form-perfil" class="conta-form" novalidate>
+          <div class="conta-campo">
+            <label class="conta-label" for="perfil-nome">Nome</label>
+            <input class="conta-input" type="text" id="perfil-nome" name="nome"
+                   value="Lucas Mendes" maxlength="60" autocomplete="name" required>
+          </div>
+
+          <div class="conta-campo">
+            <label class="conta-label" for="perfil-email">E-mail</label>
+            <input class="conta-input" type="email" id="perfil-email" name="email"
+                   value="lucas@email.com" maxlength="120" autocomplete="email" required>
+          </div>
+
+          <div class="conta-campo">
+            <label class="conta-label" for="perfil-moeda">Moeda</label>
+            <select class="conta-input conta-select" id="perfil-moeda" name="moeda">
+              <option value="BRL" selected>BRL — Real Brasileiro</option>
+              <option value="USD">USD — Dólar Americano</option>
+              <option value="EUR">EUR — Euro</option>
+            </select>
+          </div>
+
+          <button class="conta-btn-principal" type="submit">Salvar alterações</button>
+          <p class="conta-feedback" id="perfil-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- ===================== CATEGORIAS PERSONALIZADAS ===================== -->
+      <section class="conta-card" aria-labelledby="titulo-categorias">
+        <h2 class="conta-card-titulo" id="titulo-categorias">Categorias personalizadas</h2>
+
+        <ul class="conta-itens" id="lista-categorias">
+          <li class="conta-item" data-categoria="pets">
+            <span class="conta-item-icone" style="--cor-item: #fbbf24;">
+              <i data-lucide="paw-print"></i>
+            </span>
+            <span class="conta-item-nome">Pets</span>
+            <button class="conta-item-remover" type="button" aria-label="Remover categoria Pets">
+              <i data-lucide="x"></i>
+            </button>
+          </li>
+
+          <li class="conta-item" data-categoria="assinaturas">
+            <span class="conta-item-icone" style="--cor-item: #3b82f6;">
+              <i data-lucide="repeat"></i>
+            </span>
+            <span class="conta-item-nome">Assinaturas</span>
+            <button class="conta-item-remover" type="button" aria-label="Remover categoria Assinaturas">
+              <i data-lucide="x"></i>
+            </button>
+          </li>
+
+          <li class="conta-item" data-categoria="doacoes">
+            <span class="conta-item-icone" style="--cor-item: #00e5a8;">
+              <i data-lucide="heart-handshake"></i>
+            </span>
+            <span class="conta-item-nome">Doações</span>
+            <button class="conta-item-remover" type="button" aria-label="Remover categoria Doações">
+              <i data-lucide="x"></i>
+            </button>
+          </li>
+        </ul>
+
+        <form class="conta-nova-categoria" id="form-nova-categoria" novalidate>
+          <label class="conta-sr-only" for="nova-categoria">Nome da nova categoria</label>
+          <input class="conta-input" type="text" id="nova-categoria" name="categoria"
+                 placeholder="Nova categoria..." maxlength="30" autocomplete="off">
+          <button class="conta-btn-icone" type="submit" aria-label="Adicionar categoria">
+            <i data-lucide="plus"></i>
+          </button>
+        </form>
+      </section>
+
+      <!-- ===================== MEMBROS DA FAMÍLIA ===================== -->
+      <section class="conta-card" aria-labelledby="titulo-membros">
+        <h2 class="conta-card-titulo" id="titulo-membros">Membros da Família</h2>
+
+        <ul class="conta-itens" id="lista-membros">
+          <li class="conta-membro">
+            <div class="conta-avatar conta-avatar-verde" aria-hidden="true">LM</div>
+            <div class="conta-membro-info">
+              <p class="conta-membro-nome">Lucas M.</p>
+              <p class="conta-membro-papel">Titular</p>
+            </div>
+            <span class="conta-badge conta-badge-verde">Titular</span>
+          </li>
+
+          <li class="conta-membro">
+            <div class="conta-avatar conta-avatar-azul" aria-hidden="true">AM</div>
+            <div class="conta-membro-info">
+              <p class="conta-membro-nome">Ana M.</p>
+              <p class="conta-membro-papel">Cônjuge</p>
+            </div>
+            <span class="conta-badge conta-badge-azul">Cônjuge</span>
+          </li>
+
+          <li class="conta-membro">
+            <div class="conta-avatar conta-avatar-roxo" aria-hidden="true">PM</div>
+            <div class="conta-membro-info">
+              <p class="conta-membro-nome">Pedro M.</p>
+              <p class="conta-membro-papel">Dependente</p>
+            </div>
+            <span class="conta-badge conta-badge-roxo">Dependente</span>
+          </li>
+        </ul>
+
+        <button class="conta-btn-convidar" type="button" id="btn-convidar-membro">
+          <i data-lucide="plus"></i>
+          <span>Convidar membro</span>
+        </button>
+      </section>
+
+    </div>
+  </main>
+<!--------------------------------------------------------------------------------->
+<!----------------------------------Lancamento------------------------------------->
+<!--------------------------------------------------------------------------------->
+<div class="modal-overlay" id="modal-lancamento" role="dialog" aria-modal="true" aria-labelledby="lanc-titulo">
+    <div class="modal-conteudo" id="lanc-modal">
+
+        <header class="modal-header">
+            <div>
+                <h2 class="titule lancamento" id="lanc-titulo">Novo lançamento</h2>
+                <p class="subtitule lancamento" id="lanc-subtitulo">O que você deseja registrar?</p>
+            </div>
+            <button type="button" class="btn-fechar-modal" id="lanc-fechar" aria-label="Fechar">✕</button>
+        </header>
+
+        <!-- indicador de etapas (gerado pelo JS) -->
+        <ol class="stepper" id="lanc-stepper" aria-label="Etapas do lançamento"></ol>
+
+        <!-- conteúdo da etapa atual (gerado pelo JS) -->
+        <div class="lanc-corpo" id="lanc-corpo"></div>
+
+        <p class="dica-toque" id="lanc-dica">Toque em uma opção para continuar</p>
+
+        <!-- Voltar / Salvar lançamento (gerado pelo JS) -->
+        <footer class="modal-rodape" id="lanc-rodape"></footer>
+    </div>
+</div>
+
+<!---Script--->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="js/lancamento.js"></script>
+    <script>lucide.createIcons();</script>
+    <script src="js/javaScript.js"></script>-->
+</body>
+</html>
