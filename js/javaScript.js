@@ -241,3 +241,193 @@ if (document.getElementById('lista-categorias-orcamento')) {
         return `${dia}/${mes}`;
     }
 }
+
+(function () {
+  'use strict';
+ 
+  // Regra do projeto: código de página específica só roda se a página for a certa
+  const formPerfil = document.getElementById('form-perfil');
+  if (!formPerfil) return;
+ 
+  // ---------- Constantes ----------
+  const CHAVE_STORAGE = 'patrium:conta';
+  const MOEDAS_VALIDAS = ['BRL', 'USD', 'EUR'];
+  const ICONES_VALIDOS = ['paw-print', 'repeat', 'heart-handshake', 'tag'];
+  const CORES = ['#fbbf24', '#3b82f6', '#00e5a8', '#a78bfa', '#f87171', '#fb923c'];
+  const MAX_CATEGORIAS = 20;
+  const REGEX_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const REGEX_COR = /^#[0-9a-f]{6}$/i;
+ 
+  const PADRAO = {
+    perfil: { nome: 'Lucas Mendes', email: 'lucas@email.com', moeda: 'BRL' },
+    categorias: [
+      { chave: 'pets', nome: 'Pets', icone: 'paw-print', cor: '#fbbf24' },
+      { chave: 'assinaturas', nome: 'Assinaturas', icone: 'repeat', cor: '#3b82f6' },
+      { chave: 'doacoes', nome: 'Doações', icone: 'heart-handshake', cor: '#00e5a8' }
+    ]
+  };
+ 
+  // ---------- Elementos ----------
+  const inputNome = document.getElementById('perfil-nome');
+  const inputEmail = document.getElementById('perfil-email');
+  const selectMoeda = document.getElementById('perfil-moeda');
+  const feedbackPerfil = document.getElementById('perfil-feedback');
+  const nomeExibido = document.getElementById('perfil-nome-exibido');
+  const avatarPerfil = document.getElementById('perfil-avatar');
+ 
+  const listaCategorias = document.getElementById('lista-categorias');
+  const formNovaCategoria = document.getElementById('form-nova-categoria');
+  const inputNovaCategoria = document.getElementById('nova-categoria');
+ 
+  // ---------- Armazenamento (trocar por dados.js depois) ----------
+  function copiarPadrao() {
+    return JSON.parse(JSON.stringify(PADRAO));
+  }
+ 
+  // Tudo que vem do localStorage é tratado como não confiável: valida antes de usar
+  function lerDados() {
+    try {
+      const bruto = localStorage.getItem(CHAVE_STORAGE);
+      if (!bruto) return copiarPadrao();
+ 
+      const dados = JSON.parse(bruto);
+      const padrao = copiarPadrao();
+ 
+      const perfil = dados && dados.perfil ? dados.perfil : {};
+      const nome = typeof perfil.nome === 'string' ? perfil.nome.trim().slice(0, 60) : '';
+      const email = typeof perfil.email === 'string' ? perfil.email.trim().slice(0, 120) : '';
+      const moeda = MOEDAS_VALIDAS.includes(perfil.moeda) ? perfil.moeda : padrao.perfil.moeda;
+ 
+      const categorias = Array.isArray(dados && dados.categorias)
+        ? dados.categorias
+            .filter((c) => c && typeof c.nome === 'string' && typeof c.chave === 'string')
+            .slice(0, MAX_CATEGORIAS)
+            .map((c) => ({
+              chave: c.chave.slice(0, 40),
+              nome: c.nome.trim().slice(0, 30),
+              icone: ICONES_VALIDOS.includes(c.icone) ? c.icone : 'tag',
+              cor: REGEX_COR.test(c.cor) ? c.cor : CORES[0]
+            }))
+            .filter((c) => c.nome.length > 0)
+        : padrao.categorias;
+ 
+      return {
+        perfil: {
+          nome: nome || padrao.perfil.nome,
+          email: REGEX_EMAIL.test(email) ? email : padrao.perfil.email,
+          moeda: moeda
+        },
+        categorias: categorias
+      };
+    } catch (erro) {
+      // JSON quebrado ou localStorage bloqueado: volta para o padrão
+      return copiarPadrao();
+    }
+  }
+ 
+  function salvarDados(dados) {
+    try {
+      localStorage.setItem(CHAVE_STORAGE, JSON.stringify(dados));
+      return true;
+    } catch (erro) {
+      return false; // cota cheia ou modo privado
+    }
+  }
+ 
+  let dados = lerDados();
+ 
+  // ---------- Utilidades ----------
+  function limparEspacos(texto) {
+    return texto.replace(/\s+/g, ' ').trim();
+  }
+ 
+  // "Doações" -> "doacoes" (a chave precisa bater com a do categoriasOrcamento)
+  function gerarChave(nome) {
+    return nome
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+ 
+  function iniciais(nome) {
+    const partes = limparEspacos(nome).split(' ').filter(Boolean);
+    if (partes.length === 0) return '?';
+    if (partes.length === 1) return Array.from(partes[0]).slice(0, 2).join('').toUpperCase();
+    const primeira = Array.from(partes[0])[0];
+    const ultima = Array.from(partes[partes.length - 1])[0];
+    return (primeira + ultima).toUpperCase();
+  }
+ 
+  let timerFeedback = null;
+  function mostrarFeedback(elemento, mensagem, erro) {
+    elemento.textContent = mensagem; // textContent: nunca innerHTML
+    elemento.classList.toggle('conta-feedback-erro', Boolean(erro));
+    clearTimeout(timerFeedback);
+    if (!erro) {
+      timerFeedback = setTimeout(() => { elemento.textContent = ''; }, 3000);
+    }
+  }
+ 
+  function atualizarIcones() {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  }
+ 
+  // ---------- PERFIL ----------
+  function preencherPerfil() {
+    inputNome.value = dados.perfil.nome;
+    inputEmail.value = dados.perfil.email;
+    selectMoeda.value = dados.perfil.moeda;
+    atualizarCabecalhoPerfil();
+  }
+ 
+  function atualizarCabecalhoPerfil() {
+    nomeExibido.textContent = dados.perfil.nome;
+    avatarPerfil.textContent = iniciais(dados.perfil.nome);
+  }
+ 
+  function validarPerfil(nome, email, moeda) {
+    if (nome.length < 2 || nome.length > 60) {
+      return { campo: inputNome, mensagem: 'O nome precisa ter entre 2 e 60 caracteres.' };
+    }
+    if (!REGEX_EMAIL.test(email) || email.length > 120) {
+      return { campo: inputEmail, mensagem: 'Digite um e-mail válido.' };
+    }
+    if (!MOEDAS_VALIDAS.includes(moeda)) {
+      return { campo: selectMoeda, mensagem: 'Escolha uma moeda da lista.' };
+    }
+    return null;
+  }
+ 
+  formPerfil.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+ 
+    [inputNome, inputEmail, selectMoeda].forEach((c) => c.removeAttribute('aria-invalid'));
+ 
+    const nome = limparEspacos(inputNome.value);
+    const email = inputEmail.value.trim();
+    const moeda = selectMoeda.value;
+ 
+    const erro = validarPerfil(nome, email, moeda);
+    if (erro) {
+      erro.campo.setAttribute('aria-invalid', 'true');
+      erro.campo.focus();
+      mostrarFeedback(feedbackPerfil, erro.mensagem, true);
+      return;
+    }
+ 
+    dados.perfil = { nome: nome, email: email, moeda: moeda };
+    atualizarCabecalhoPerfil();
+    inputNome.value = nome;
+ 
+    if (salvarDados(dados)) {
+      mostrarFeedback(feedbackPerfil, 'Alterações salvas.', false);
+      document.dispatchEvent(new CustomEvent('perfil:salvo', { detail: dados.perfil }));
+    } else {
+      mostrarFeedback(feedbackPerfil, 'Não foi possível salvar neste navegador.', true);
+    }
+  });
+ 
