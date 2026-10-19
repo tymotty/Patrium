@@ -431,3 +431,101 @@ if (document.getElementById('lista-categorias-orcamento')) {
     }
   });
  
+  // ---------- CATEGORIAS PERSONALIZADAS ----------
+  function criarItemCategoria(categoria) {
+    const li = document.createElement('li');
+    li.className = 'conta-item';
+    li.dataset.categoria = categoria.chave;
+ 
+    const iconeWrap = document.createElement('span');
+    iconeWrap.className = 'conta-item-icone';
+    iconeWrap.style.setProperty('--cor-item', categoria.cor);
+    const icone = document.createElement('i');
+    icone.setAttribute('data-lucide', categoria.icone);
+    iconeWrap.appendChild(icone);
+ 
+    const nome = document.createElement('span');
+    nome.className = 'conta-item-nome';
+    nome.textContent = categoria.nome; // texto digitado: sempre textContent
+ 
+    const botao = document.createElement('button');
+    botao.className = 'conta-item-remover';
+    botao.type = 'button';
+    botao.setAttribute('aria-label', 'Remover categoria ' + categoria.nome);
+    const iconeX = document.createElement('i');
+    iconeX.setAttribute('data-lucide', 'x');
+    botao.appendChild(iconeX);
+ 
+    li.append(iconeWrap, nome, botao);
+    return li;
+  }
+ 
+  function renderizarCategorias() {
+    const itens = dados.categorias.map(criarItemCategoria);
+    listaCategorias.replaceChildren(...itens);
+    atualizarIcones();
+  }
+ 
+  function notificarCategorias() {
+    document.dispatchEvent(new CustomEvent('categorias:alteradas', { detail: dados.categorias }));
+  }
+ 
+  formNovaCategoria.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+    inputNovaCategoria.removeAttribute('aria-invalid');
+ 
+    const nome = limparEspacos(inputNovaCategoria.value);
+    const chave = gerarChave(nome);
+ 
+    let mensagemErro = '';
+    if (nome.length < 2 || nome.length > 30) {
+      mensagemErro = 'O nome da categoria precisa ter entre 2 e 30 caracteres.';
+    } else if (!chave) {
+      mensagemErro = 'Use letras ou números no nome da categoria.';
+    } else if (dados.categorias.some((c) => c.chave === chave)) {
+      mensagemErro = 'Essa categoria já existe.';
+    } else if (dados.categorias.length >= MAX_CATEGORIAS) {
+      mensagemErro = 'Limite de ' + MAX_CATEGORIAS + ' categorias atingido.';
+    }
+ 
+    if (mensagemErro) {
+      inputNovaCategoria.setAttribute('aria-invalid', 'true');
+      inputNovaCategoria.setCustomValidity(mensagemErro);
+      inputNovaCategoria.reportValidity();
+      inputNovaCategoria.setCustomValidity('');
+      return;
+    }
+ 
+    dados.categorias.push({
+      chave: chave,
+      nome: nome,
+      icone: 'tag',
+      cor: CORES[dados.categorias.length % CORES.length]
+    });
+ 
+    salvarDados(dados);
+    renderizarCategorias();
+    notificarCategorias();
+    inputNovaCategoria.value = '';
+    inputNovaCategoria.focus();
+  });
+ 
+  // Um único listener na lista (funciona também para itens criados depois)
+  listaCategorias.addEventListener('click', function (evento) {
+    const botao = evento.target.closest('.conta-item-remover');
+    if (!botao) return;
+ 
+    const item = botao.closest('.conta-item');
+    if (!item) return;
+ 
+    const chave = item.dataset.categoria;
+    dados.categorias = dados.categorias.filter((c) => c.chave !== chave);
+ 
+    salvarDados(dados);
+    renderizarCategorias();
+    notificarCategorias();
+  });
+
+  // ---------- Início ----------
+  preencherPerfil();
+renderizarCategorias();
