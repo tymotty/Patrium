@@ -525,7 +525,8 @@ if (document.getElementById('lista-categorias-orcamento')) {
     renderizarCategorias();
     notificarCategorias();
   });
-
+});
   // ---------- Início ----------
-  preencherPerfil();
+  
+preencherPerfil();
 renderizarCategorias();
