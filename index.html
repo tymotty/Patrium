@@ -79,10 +79,56 @@
 <!----------------------------------DASHBOARD-------------------------------------->
 <!--------------------------------------------------------------------------------->
     <main class="dashboard" id="visao-geral" >
-        
+
+        <header class="dashboard-header"> <!--Header Com filtro-->
+            <section class="dashboard-header-left"> <!--Info header-->
+                <h1 class="dashboard-title" id="visao-geral-title-usuario">Bem-vindo, [NOME_DO_USUARIO]!</h1>
+                <p class="dashboard-subtitle" id="visao-geral-subtitle">[DATA] · Atualizado agora</p>
+            </section>
+            <section class="dashboard-header-right"> <!--Filter time-->
+                <div class="filter-header">
+                    <button class="btn-filter" id="btn-filter-1m" aria-label="Filtrar 1 M">
+                        1M
+                    </button>
+                    <button class="btn-filter" id="btn-filter-3m" aria-label="Filtrar 3 M">
+                        3M
+                    </button>
+                    <button class="btn-filter" id="btn-filter-12m" aria-label="Filtrar 12 M">
+                        12M
+                    </button>
+                    <button class="btn-filter" id="btn-filter-tudo" aria-label="Filtrar Tudo">
+                        Tudo
+                    </button>
+                </div>
+                <button class="hide-button" aria-label="Ocultar">
+                    <i data-lucide="eye"></i>
+                </button>
+                <button class="btn-lancamento" data-abrir-lancamento aria-label="Novo lançamento">
+                    <i data-lucide="plus"></i>
+                </button>
+            </section>
+        </header>
+
+        <section>
+            <article class="widget-patrimonio-total"></article>
+
+            <section class="widget-cards">
+                <div class="card-lucro-acumulado"></div>
+                <div class="card-receita"></div>
+                <div class="card-guardado"></div>
+            </section>
+
+            <article class="widget-alocacao"></article>
+
+            <article class="widget-orcamento"></article>
+
+            <article class="widget-metas"></article>
+
+            <article class="widget-carteira"></article>
+
+            <article class="widget-lancamentos"></article>
+        </section>
     </main>
-
-
 <!--------------------------------------------------------------------------------->
 <!----------------------------------Lancamento------------------------------------->
 <!--------------------------------------------------------------------------------->
