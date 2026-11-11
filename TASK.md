@@ -152,3 +152,78 @@ Mais recentes no topo.
 - **404 do `js/configuracoes.js`:** o HTML chama o arquivo, que ainda não existe
 
 ---
+
+## 5. Registro de mudanças e decisões
+
+Mais recentes no topo.
+
+### 2026-11-10: Criado o `task.md`
+- **Motivo:** centralizar tarefas, bugs e decisões, para não perder o histórico do projeto
+
+### 2026-11-09: Cada KPI será um widget próprio (sem grupo)
+- **O que mudou:** os 3 KPIs saem do grupo `widget-cards` e ficam no mesmo nível dos outros widgets
+- **Motivo:** a personalização vai mover e ocultar widgets individualmente; um grupo atrapalha isso. A posição na tela é decidida pelo CSS (grade), não pela árvore do HTML
+
+### 2026-11-09: Recomeçar a Visão Geral e Investimentos em DOM puro
+- **O que mudou:** o código antigo foi apagado e a tela será refeita em missões guiadas
+- **Motivo:** praticar JS já visando a versão final. React depois, quando o fluxo de estado → renderização estiver claro. DOM também treina `textContent` e XSS, que contam para o objetivo de AppSec
+
+### 2026-11-09: Sem título de página no topo
+- **O que mudou:** a Visão Geral e Investimentos não repetem o título; ficam o `<h1>` de boas-vindas (Visão Geral) e a barra de ferramentas
+- **Motivo:** a sidebar já indica a página ativa, e a tela ganha altura útil
+
+### 2026-11-08: Novo design (Figma) para desktop, mobile, Personalização e Investimentos
+- **Direção:** tema escuro com verde de destaque, Inter em tudo (serifa só no logo), hero com gráfico, faixas no mobile, nav inferior com botão "+" central
+- **Motivo:** o layout antigo era um dashboard de desktop empilhado numa coluna, sem hierarquia
+
+### Histórico anterior (resumo)
+- **Estrutura achatada na raiz** (`index.html`, `investimentos.html`, `orcamento.html`, `configuracoes.html`, `nav.html` + `css/` e `js/`), com caminhos relativos simples. *Motivo:* GitHub Pages e simplicidade; nunca colocar HTML em profundidades diferentes
+- **Nav via `nav.html` + `componentes.js`** injetado em `#nav-placeholder`. *Motivo:* um único menu para todas as páginas (exige servidor local por causa do `fetch`)
+- **Gasto de cada categoria calculado somando o histórico** (`calcularGastoCategoria`), nunca um número fixo. *Motivo:* uma única fonte de verdade
+- **Barra do Orçamento vermelha quando a categoria estoura.** *Motivo:* alerta visual imediato
+- **Modal "Novo Lançamento" sem botão "Continuar":** clicar na opção já avança, e o botão "Salvar" só aparece no final. *Motivo:* menos cliques
+- **Fluxos do modal:** despesa = tipo → categoria → subcategoria → detalhes; receita = tipo → detalhes; investimento = tipo → destino → detalhes
+
+---
+
+## 6. Regras do projeto
+
+- **Segurança:** nunca usar `innerHTML` com texto digitado pelo usuário; usar `textContent`
+- **Páginas:** código específico de uma página fica dentro de `if (document.getElementById('...'))`
+- **Arquivos:** nomes em minúsculas (no GitHub Pages, maiúsculas e minúsculas importam)
+- **Caminhos:** relativos e simples, sem `/` inicial nem `../`
+- **Dados:** nada de número fixo quando dá para calcular a partir do histórico
+- **`id`:** único na página; para estilo, usar `class`
+- **Importação de JSON** (personalização): validar tipos de widget, cores e tamanhos antes de aplicar
+
+---
+
+## 7. Modelos para copiar
+
+### Bug
+
+```
+### BUG-XXX: Título curto
+- **Onde:** arquivo ou página
+- **Sintoma:** o que apareceu (mensagem de erro, comportamento)
+- **Causa:** por que aconteceu
+- **Solução:** o que foi feito
+- **Como evitar:** o que lembrar da próxima vez
+- **Status:** aberto | em andamento | resolvido
+```
+
+### Mudança ou decisão
+
+```
+### AAAA-MM-DD: Título curto
+- **O que mudou:**
+- **Motivo:**
+- **Alternativas consideradas:** (opcional)
+- **Impacto:** arquivos ou telas afetadas (opcional)
+```
+
+### Tarefa
+
+```
+- [ ] Verbo + objetivo (arquivo ou tela)
+```
