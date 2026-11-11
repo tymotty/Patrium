@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerenciamento de Patrimônio">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/lancamento.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patrium</title>
 </head>
 <body>
@@ -82,7 +83,7 @@
 
         <header class="dashboard-header"> <!--Header Com filtro-->
             <section class="dashboard-header-left"> <!--Info header-->
-                <h1 class="dashboard-title" id="visao-geral-title-usuario">Bem-vindo, [NOME_DO_USUARIO]!</h1>
+                <h2 class="dashboard-title" id="visao-geral-title-usuario">Bem-vindo, [NOME_DO_USUARIO]!</h2>
                 <p class="dashboard-subtitle" id="visao-geral-subtitle">[DATA] · Atualizado agora</p>
             </section>
             <section class="dashboard-header-right"> <!--Filter time-->
@@ -109,25 +110,89 @@
             </section>
         </header>
 
-        <section>
-            <article class="widget-patrimonio-total"></article>
-
-            <section class="widget-cards">
-                <div class="card-lucro-acumulado"></div>
-                <div class="card-receita"></div>
-                <div class="card-guardado"></div>
+        <div class="dashboard-content">
+            <section 
+            class="widget patrimonio-total" 
+            id="widget-patrimonio-total"
+            data-widget="patrimonio-total"
+            aria-labelledby="titulo-patrimonio">
+                <h2 id="titulo-patrimonio">Patrimônio Total</h2>
             </section>
 
-            <article class="widget-alocacao"></article>
+            <section 
+            class="card lucro-acumulado" 
+            id="card-lucro-acumulado"
+            data-widget="lucro-acumulado"
+            aria-labelledby="titulo-lucro-acumulado">
+                <h2 id="titulo-lucro-acumulado">Lucro Acumulado</h2>
+                </section>
 
-            <article class="widget-orcamento"></article>
+            <section 
+            class="card rentabilidade" 
+            id="card-rentabilidade"
+            data-widget="rentabilidade"
+            aria-labelledby="titulo-rentabilidade">
+                <h2 id="titulo-rentabilidade">Rentabilidade</h2>
+            </section>
 
-            <article class="widget-metas"></article>
+            <section 
+            class="card guardado" 
+            id="card-guardado"
+            data-widget="guardado"
+            aria-labelledby="titulo-guardado">
+                <h2 id="titulo-guardado">Guardado</h2>
+            </section>
 
-            <article class="widget-carteira"></article>
+            <section 
+            class="widget alocacao" 
+            id="widget-alocacao"
+            data-widget="alocacao"
+            aria-labelledby="titulo-alocacao">
+                <h2 id="titulo-alocacao">Alocação</h2>
+                </section>
+            <section 
+            class="widget orcamento" 
+            id="widget-orcamento"
+            data-widget="orcamento"
+            aria-labelledby="titulo-orcamento">
+                <h2 id="titulo-orcamento">Orçamento</h2>
+            </section>
+            <section 
+            class="widget metas" 
+            id="widget-metas"
+            data-widget="metas"
+            aria-labelledby="titulo-metas">
+                <h2 id="titulo-metas">Metas</h2>
+            </section>  
+            <section 
+            class="widget carteira" 
+            id="widget-carteira"
+            data-widget="carteira"
+            aria-labelledby="titulo-carteira">
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="carteira-ativo">Ativo</th>
+                            <th id="carteira-tipo">Tipo</th>
+                            <th id="carteira-preco">Preço</th>
+                            <th id="carteira-var">Var.</th>
+                            <th id="carteira-peso">Peso</th>
+                            <th id="carteira-tendencia">Tendência</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-            <article class="widget-lancamentos"></article>
+                </table>
+            </section>
+            <section 
+            class="widget lancamentos" 
+            id="widget-lancamentos"
+            data-widget="lancamentos"
+            aria-labelledby="titulo-lancamentos">
+
+            <h2 id="titulo-lancamentos">Lançamentos</h2>
         </section>
+        </div>
     </main>
 <!--------------------------------------------------------------------------------->
 <!----------------------------------Lancamento------------------------------------->
@@ -160,6 +225,6 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script src="js/lancamento.js"></script>
     <script>lucide.createIcons();</script>
-    <script src="js/javaScript.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
