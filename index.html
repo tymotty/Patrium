@@ -11,9 +11,7 @@
 </head>
 <body>
     
-<!--------------------------------------------------------------------------------->
-<!------------------------------------NAV------------------------------------------>
-<!--------------------------------------------------------------------------------->
+<!-- ============ NAV ============ -->
     <aside class="sidebar">
         <div class="brand">
             <a href="index.html" class="brand" aria-label="Ir para a visão geral">
@@ -22,7 +20,7 @@
             <p id="subtitle">Gerenciamento de Patrimônio</p>
         </div>
 
-        <!-----MENU----->
+        <!-- === MENU === -->
         <nav aria-label="Menu de navegação">
             <ul>
                 <li><a href="index.html" class="nav-item" id="nav-visao-geral">
@@ -76,9 +74,7 @@
 
 
 
-<!--------------------------------------------------------------------------------->
-<!----------------------------------DASHBOARD-------------------------------------->
-<!--------------------------------------------------------------------------------->
+<!-- ========== DASHBOARD ========== -->
     <main class="dashboard" id="visao-geral" >
 
         <header class="dashboard-header"> <!--Header Com filtro-->
@@ -86,7 +82,7 @@
                 <h2 class="dashboard-title" id="visao-geral-title-usuario">Bem-vindo, [NOME_DO_USUARIO]!</h2>
                 <p class="dashboard-subtitle" id="visao-geral-subtitle">[DATA] · Atualizado agora</p>
             </section>
-            <section class="dashboard-header-right"> <!--Filter time-->
+            <div class="dashboard-header-right"> 
                 <div class="filter-header">
                     <button class="btn-filter" id="btn-filter-1m" aria-label="Filtrar 1 M">
                         1M
@@ -107,7 +103,7 @@
                 <button class="btn-lancamento" data-abrir-lancamento aria-label="Novo lançamento">
                     <i data-lucide="plus"></i>
                 </button>
-            </section>
+            </div>
         </header>
 
         <div class="dashboard-content">
@@ -116,7 +112,7 @@
             id="widget-patrimonio-total"
             data-widget="patrimonio-total"
             aria-labelledby="titulo-patrimonio">
-                <h2 id="titulo-patrimonio">Patrimônio Total</h2>
+                <h3 id="titulo-patrimonio">Patrimônio Total</h3>
             </section>
 
             <section 
@@ -124,15 +120,15 @@
             id="card-lucro-acumulado"
             data-widget="lucro-acumulado"
             aria-labelledby="titulo-lucro-acumulado">
-                <h2 id="titulo-lucro-acumulado">Lucro Acumulado</h2>
-                </section>
+                <h3 id="titulo-lucro-acumulado">Lucro Acumulado</h3>
+            </section>
 
             <section 
             class="card rentabilidade" 
             id="card-rentabilidade"
             data-widget="rentabilidade"
             aria-labelledby="titulo-rentabilidade">
-                <h2 id="titulo-rentabilidade">Rentabilidade</h2>
+                <h3 id="titulo-rentabilidade">Rentabilidade</h3>
             </section>
 
             <section 
@@ -140,7 +136,7 @@
             id="card-guardado"
             data-widget="guardado"
             aria-labelledby="titulo-guardado">
-                <h2 id="titulo-guardado">Guardado</h2>
+                <h3 id="titulo-guardado">Guardado</h3>
             </section>
 
             <section 
@@ -148,28 +144,32 @@
             id="widget-alocacao"
             data-widget="alocacao"
             aria-labelledby="titulo-alocacao">
-                <h2 id="titulo-alocacao">Alocação</h2>
-                </section>
+                <h3 id="titulo-alocacao">Alocação</h3>
+            </section>
             <section 
             class="widget orcamento" 
             id="widget-orcamento"
             data-widget="orcamento"
             aria-labelledby="titulo-orcamento">
-                <h2 id="titulo-orcamento">Orçamento</h2>
+                <h3 id="titulo-orcamento">Orçamento</h3>
             </section>
             <section 
             class="widget metas" 
             id="widget-metas"
             data-widget="metas"
             aria-labelledby="titulo-metas">
-                <h2 id="titulo-metas">Metas</h2>
+                <h3 id="titulo-metas">Metas</h3>
             </section>  
             <section 
             class="widget carteira" 
             id="widget-carteira"
             data-widget="carteira"
             aria-labelledby="titulo-carteira">
+                
                 <table>
+                    <caption>
+                        <h3 id="titulo-carteira">Carteira</h3>
+                    </caption>
                     <thead>
                         <tr>
                             <th id="carteira-ativo">Ativo</th>
@@ -180,8 +180,6 @@
                             <th id="carteira-tendencia">Tendência</th>
                         </tr>
                     </thead>
-                    <tbody>
-
                 </table>
             </section>
             <section 
@@ -190,14 +188,12 @@
             data-widget="lancamentos"
             aria-labelledby="titulo-lancamentos">
 
-            <h2 id="titulo-lancamentos">Lançamentos</h2>
+            <h3 id="titulo-lancamentos">Lançamentos</h3>
         </section>
         </div>
     </main>
-<!--------------------------------------------------------------------------------->
-<!----------------------------------Lancamento------------------------------------->
-<!--------------------------------------------------------------------------------->
-<div class="modal-overlay" id="modal-lancamento" role="dialog" aria-modal="true" aria-labelledby="lanc-titulo">
+<!-- ==== MODAL DE LANÇAMENTO ==== -->
+    <div class="modal-overlay" id="modal-lancamento" role="dialog" aria-modal="true" aria-labelledby="lanc-titulo">
     <div class="modal-conteudo" id="lanc-modal">
 
         <header class="modal-header">
@@ -221,9 +217,9 @@
     </div>
 </div>
 
-<!---Script--->
+<!-- ==== Script ==== -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <script src="js/lancamento.js"></script>
+    <script src="js/lancamento.js" type="module"></script>
     <script>lucide.createIcons();</script>
     <script src="js/main.js"></script>
 </body>
