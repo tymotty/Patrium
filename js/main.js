@@ -1,3 +1,4 @@
+lucide.createIcons();
 
 if (document.getElementById('lista-categorias-orcamento')) {
 

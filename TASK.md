@@ -34,19 +34,19 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` concluída
 
 ### Refazer a Visão Geral (missões)
 
-- [~] **Missão 1:** estrutura de pastas e esqueleto HTML
+- [X] **Missão 1:** estrutura de pastas e esqueleto HTML
   - [x] `index.html` na raiz, com `css/` e `js/`
   - [x] Cabeçalho (`<header>`) com `<h1>`, subtítulo e filtros
   - [x] `id`s únicos nos botões de filtro; botão de lançamento fechado; olho como `<button>`
-  - [ ] Cada KPI como widget próprio, irmão dos demais (sem o grupo `widget-cards`)
-  - [ ] Mesma tag para todos os widgets
-  - [ ] Nome do KPI do meio conferido com o design (Rentabilidade, não Receita)
-  - [ ] `id` + atributo `data-` identificando cada widget
-  - [ ] Título em cada widget (visível ou *visually hidden*)
-  - [ ] Container único dos widgets sem `<section>` desnecessária
-  - [ ] Acessibilidade dos filtros: `data-` do período, grupo com `role`, estado ativo, olho com estado
-  - [ ] Validar no W3C e anotar os erros/avisos
-- [ ] **Missão 2:** CSS base (variáveis, fonte Inter, layout de duas colunas)
+  - [X] Cada KPI como widget próprio, irmão dos demais (sem o grupo `widget-cards`)
+  - [X] Mesma tag para todos os widgets
+  - [X] Nome do KPI do meio conferido com o design (Rentabilidade, não Receita)
+  - [X] `id` + atributo `data-` identificando cada widget
+  - [X] Título em cada widget (visível ou *visually hidden*)
+  - [X] Container único dos widgets sem `<section>` desnecessária
+  - [X] Acessibilidade dos filtros: `data-` do período, grupo com `role`, estado ativo, olho com estado
+  - [X] Validar no W3C e anotar os erros/avisos
+- [~] **Missão 2:** CSS base (variáveis, fonte Inter, layout de duas colunas)
 - [ ] **Missão 3:** menu lateral (sidebar)
 - [ ] **Missão 4:** dados em JS (`dados.js`, com `localStorage`)
 - [ ] **Missão 5:** cards de métrica gerados pelo JS
