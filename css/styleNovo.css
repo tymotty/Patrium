@@ -1,0 +1,247 @@
+
+/* ---------- Fonte (Inter local, sem terceiros) ---------- */
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/inter-variable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ---------- Variáveis (nomeadas pelo papel) ---------- */
+:root {
+    /* cores */
+    --bg-page: #0B0E14;
+    --bg-card: #121722;
+    --border: #1E2635;
+    --text: #FFFFFF;
+    --text-muted: #8B93A7;
+    --positive: #22E39B;
+    --negative: #F43F5E;
+    --warning: #FBBF24;
+    --chart-blue: #3B82F6;
+    --chart-purple: #A78BFA;
+
+    /* tipografia */
+    --font-main: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    /* medidas */
+    --sidebar-width: 260px;
+    --grid-gap: 20px;
+    --page-padding: 32px;
+    --widget-padding: 20px;
+    --widget-min-height: 120px;
+    --radius: 12px;
+}
+/* ---------- Reset mínimo ---------- */
+*,*::before,*::after {
+    box-sizing: border-box;
+}
+
+body,h1,h2,h3,p,ul {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,input,select {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+:focus-visible {
+    outline: 2px solid var(--chart-blue);
+    outline-offset: 2px;
+}
+
+/* ---------- Base ---------- */
+body {
+    min-height: 100dvh;
+    background-color: var(--bg-page);
+    color: var(--text);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Layout: menu fixo + área principal ---------- */
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--sidebar-width);
+    padding: 24px 0;
+    overflow-y: auto;
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--border);
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+    min-width: 0;
+    margin-left: var(--sidebar-width);
+    padding: var(--page-padding);
+}
+
+/* ---------- Cabeçalho ---------- */
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--grid-gap);
+}
+
+.dashboard-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.dashboard-subtitle {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.dashboard-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-header {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.btn-filter {
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.btn-filter:hover {
+    color: var(--text);
+}
+
+.btn-filter[aria-pressed="true"] {
+    background-color: var(--border);
+    color: var(--text);
+}
+
+.hide-button,.btn-lancamento {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+}
+
+.hide-button {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+}
+
+.hide-button:hover {
+    color: var(--text);
+}
+
+.btn-lancamento {
+    background-color: var(--positive);
+    color: var(--bg-page);
+}
+.titulo-metas,.titulo-carteira,.titulo-lancamentos,.titulo-alocacao,.titulo-orcamento{
+    color: var(--text-muted);
+}
+/* ---------- Grade de widgets (12 colunas) ---------- */
+.dashboard-content {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-rows: minmax(var(--widget-min-height), auto);
+    gap: var(--grid-gap);
+}
+
+/* Uma classe para todos os blocos */
+.widget {
+    min-width: 0;
+    padding: var(--widget-padding);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.widget h3 {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Posição no desktop: vem do tipo do widget (data-widget), não da classe nem do id */
+[data-widget="patrimonio-total"] {
+    grid-column: span 8;
+    grid-row: span 3;
+}
+
+[data-widget="lucro-acumulado"],
+[data-widget="rentabilidade"],
+[data-widget="guardado"] {
+    grid-column: 9 / span 4;
+}
+
+[data-widget="alocacao"],
+[data-widget="orcamento"],
+[data-widget="metas"] {
+    grid-column: span 4;
+}
+
+[data-widget="carteira"] {
+    grid-column: span 8;
+}
+
+[data-widget="lancamentos"] {
+    grid-column: span 4;
+}
+
+/* ---------- Tabela da Carteira (base) ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+caption {
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+th {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: left;
+    text-transform: uppercase;
+}
