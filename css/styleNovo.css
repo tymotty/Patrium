@@ -10,17 +10,29 @@
 
 /* ---------- Variáveis (nomeadas pelo papel) ---------- */
 :root {
-    /* cores */
-    --bg-page: #0B0E14;
-    --bg-card: #121722;
-    --border: #1E2635;
-    --text: #FFFFFF;
-    --text-muted: #8B93A7;
-    --positive: #22E39B;
-    --negative: #F43F5E;
-    --warning: #FBBF24;
-    --chart-blue: #3B82F6;
-    --chart-purple: #A78BFA;
+    /* --- paleta (nomeada pela cor; só aqui aparecem os valores) --- */
+    --color-navy-900: #0B0E14;
+    --color-navy-800: #121722;
+    --color-navy-700: #1E2635;
+    --color-white: #FFFFFF;
+    --color-slate: #8B93A7;
+    --color-green: #22E39B;
+    --color-red: #F43F5E;
+    --color-yellow: #FBBF24;
+    --color-blue: #3B82F6;
+    --color-purple: #A78BFA;
+
+    /* --- papéis (nomeados pelo uso; o resto do CSS só usa estes) --- */
+    --bg-page: var(--color-navy-900);
+    --bg-card: var(--color-navy-800);
+    --border: var(--color-navy-700);
+    --text: var(--color-white);
+    --text-muted: var(--color-slate);
+    --positive: var(--color-green);
+    --negative: var(--color-red);
+    --warning: var(--color-yellow);
+    --chart-blue: var(--color-blue);
+    --chart-purple: var(--color-purple);
 
     /* tipografia */
     --font-main: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -33,12 +45,20 @@
     --widget-min-height: 120px;
     --radius: 12px;
 }
+
 /* ---------- Reset mínimo ---------- */
-*,*::before,*::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-body,h1,h2,h3,p,ul {
+body,
+h1,
+h2,
+h3,
+p,
+ul {
     margin: 0;
 }
 
@@ -52,7 +72,9 @@ a {
     text-decoration: none;
 }
 
-button,input,select {
+button,
+input,
+select {
     font: inherit;
     color: inherit;
 }
@@ -82,14 +104,72 @@ body {
 }
 
 /* ---------- Layout: menu fixo + área principal ---------- */
+/* ---------- Menu lateral ---------- */
 .sidebar {
     position: fixed;
     inset: 0 auto 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     width: var(--sidebar-width);
     padding: 24px 0;
     overflow-y: auto;
     background-color: var(--bg-card);
     border-right: 1px solid var(--border);
+}
+
+/* só o bloco externo (o link interno também tem a classe brand) */
+.sidebar > .brand {
+    padding: 0 20px;
+}
+
+.brand h1 {
+    color: var(--positive);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.brand p {
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+}
+
+.sidebar nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 12px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+.nav-item svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.nav-item:hover {
+    background-color: var(--border);
+    color: var(--text);
+}
+
+.nav-item.active,
+.nav-item[aria-current="page"] {
+    background-color: color-mix(in srgb, var(--positive) 12%, transparent);
+    color: var(--positive);
 }
 
 .dashboard {
@@ -153,7 +233,8 @@ body {
     color: var(--text);
 }
 
-.hide-button,.btn-lancamento {
+.hide-button,
+.btn-lancamento {
     display: grid;
     place-items: center;
     width: 40px;
@@ -175,9 +256,7 @@ body {
     background-color: var(--positive);
     color: var(--bg-page);
 }
-.titulo-metas,.titulo-carteira,.titulo-lancamentos,.titulo-alocacao,.titulo-orcamento{
-    color: var(--text-muted);
-}
+
 /* ---------- Grade de widgets (12 colunas) ---------- */
 .dashboard-content {
     display: grid;

@@ -176,6 +176,12 @@ Mais recentes no topo.
 - **Direção:** tema escuro com verde de destaque, Inter em tudo (serifa só no logo), hero com gráfico, faixas no mobile, nav inferior com botão "+" central
 - **Motivo:** o layout antigo era um dashboard de desktop empilhado numa coluna, sem hierarquia
 
+### 2026-11-13: Inter local e CSS refeito
+- **O que mudou:** Inter hospedada em css/fonts/ (sem CDN); style.css novo com paleta por papel; widgets posicionados por [data-widget]
+- **Motivo:** privacidade, sem dependência de terceiro, e posição que sobrevive à duplicação de widgets
+
+
+
 ### Histórico anterior (resumo)
 - **Estrutura achatada na raiz** (`index.html`, `investimentos.html`, `orcamento.html`, `configuracoes.html`, `nav.html` + `css/` e `js/`), com caminhos relativos simples. *Motivo:* GitHub Pages e simplicidade; nunca colocar HTML em profundidades diferentes
 - **Nav via `nav.html` + `componentes.js`** injetado em `#nav-placeholder`. *Motivo:* um único menu para todas as páginas (exige servidor local por causa do `fetch`)
